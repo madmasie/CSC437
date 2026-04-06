@@ -2,34 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Recipe Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filter Recipes</title>
   </head>
   <body>
-    <h1>Recipes</h1>
-    <p>This is the entry point for my recipe concept site.</p>
+    <header>
+      <p><a href="../index.html">Home</a> > Filter Recipes</p>
+      <h1>Filter Recipes</h1>
+      <p>
+        This page shows recipe categories users can browse through.
+      </p>
+    </header>
 
-    <h2>Browse Recipes</h2>
-    <ul>
-      <li><a href="recipes/spicy-miso-ramen.html">Spicy Miso Ramen</a></li>
-      <li><a href="recipes/lemon-garlic-pasta.html">Lemon Garlic Pasta</a></li>
-    </ul>
+    <main>
+      <section>
+        <h2>Filter Options</h2>
+        <ul>
+          <li><strong>Cooking Type:</strong> Breakfast, Lunch, Dinner, Dessert</li>
+          <li><strong>Flavor Profile:</strong> Savory, Creamy, Sweet, Spicy</li>
+          <li><strong>Difficulty Level:</strong> Easy, Medium, Hard</li>
+          <li><strong>Budget Type:</strong> Budget-friendly, Non-budget</li>
+          <li><strong>Dietary Restrictions:</strong> Dairy-free, Gluten-free, Vegetarian</li>
+        </ul>
+      </section>
 
-    <h2>Ingredients</h2>
-    <ul>
-      <li><a href="ingredients/owned-ingredients.html">Owned Ingredients</a></li>
-      <li><a href="ingredients/barcode-scan.html">Scan Barcodes of Ingredients</a></li>
-    </ul>
+      <section>
+        <h2>Example Result</h2>
+        <p>
+          For a user looking for a <strong>dinner</strong>,
+          <strong>easy</strong>, and <strong>budget-friendly</strong> recipe:
+        </p>
+        <ul>
+          <li>
+            <a href="../recipes/maddies-garlic-parm-pasta.html">
+              Maddie's Garlic Parm Pasta
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
 
-    <h2>Recipe Tools</h2>
-    <ul>
-      <li><a href="filters/index.html">Filter Recipes</a></li>
-      <li><a href="users/user-prompted.html">User Prompted Recipes</a></li>
-    </ul>
-
-    <h2>User Activity</h2>
-    <ul>
-      <li><a href="users/saved-recipes.html">Saved Recipes</a></li>
-      <li><a href="users/history.html">History of Recipe Visits</a></li>
-    </ul>
+    <footer>
+      <p><a href="../index.html">Back to Home</a></p>
+    </footer>
   </body>
 </html>
