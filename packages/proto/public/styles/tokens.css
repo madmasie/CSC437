@@ -1,7 +1,15 @@
 :root {
---color-background-page: #f8f0e8;
-    --color-background-header: #2f5050;
-    --color-text: #f8f0e8;
-    --color-text-header: #2f5050;
-    --color-accent: #f4a462;
+  --color-teal:   #2f5050;
+  --color-orange: #f4a462;
+  --color-coral:  #e76e50;
+  --color-cream:  #f8f0e8;
+  --color-red:    #d10000;
+
+  --color-background-page:   var(--color-cream);
+  --color-background-header: var(--color-teal);
+  --color-text:              var(--color-teal);
+  --color-text-header:       var(--color-cream);
+  --color-accent:            var(--color-coral);
+  --color-link:              var(--color-orange);
+  --color-danger:            var(--color-red);
 }
