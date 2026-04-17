@@ -11,9 +11,77 @@ header {
   background-color: var(--color-background-header);
   color: var(--color-text-header);
   font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 24px;
   font-style: normal;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+}
+
+header svg.icon {
+  flex-shrink: 0;
+  height: 3em;
+  width: 3em;
+}
+
+header .header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+header .header-subtitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+header nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recipe-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+main {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;  /* centers the main content horizontally */
 }
 
 header a {
@@ -30,8 +98,95 @@ a {
 
 svg.icon{
   display: inline;
-  height: 15em;
-  width: 30em; 
+  height: 10em;
+  width: 10em; 
   vertical-align: top;
   fill: black;
+}
+
+header svg.icon {
+  height: 3em;
+  width: 3em;
+}
+
+header a:has(svg.icon) {
+  display: flex;
+  line-height: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-teal);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  background: transparent;
+}
+
+.tag span {
+  opacity: 0.6;
+  margin-right: 4px;
+}
+
+
+  opacity: 0.4;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color-coral);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 8px 12px;
+  border: 1px solid var(--color-teal);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+form.auth {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 16px;
+  align-items: center;
+  max-width: 360px;
+}
+
+form.auth div {
+  display: contents;
+}
+
+form.auth button,
+form.auth p {
+  grid-column: 1 / -1;
 }

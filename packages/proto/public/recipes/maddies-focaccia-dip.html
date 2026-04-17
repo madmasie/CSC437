@@ -9,19 +9,25 @@
   </head>
   <body>
     <header>
-      <nav aria-label="breadcrumb">
-        <p>
-          <a href="../index.html">Home</a> <span aria-hidden="true">&rsaquo;</span>
-          <a href="../filtering/index.html">Filter Recipes</a> <span aria-hidden="true">&rsaquo;</span>
-          <a href="focaccia-bread.html">Focaccia Bread</a> <span aria-hidden="true">&rsaquo;</span>
-          Maddie's Focaccia Dip
-        </p>
+      <a href="/index.html" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-fish-cat" /></svg></a>
+      <div class="header-title">
+        <h1>Maddie's Focaccia Dip</h1>
+        <p class="header-subtitle">Olive oil &amp; balsamic dipping sauce</p>
+      </div>
+      <nav aria-label="site">
+        
+        <a href="/auth/sign-in.html">Sign In</a> / <a href="/auth/sign-up.html">Sign Up</a>
       </nav>
-      <h1>Maddie's Focaccia Dip</h1>
-      <p>A simple, savory dipping oil perfect alongside fresh focaccia.</p>
     </header>
 
     <main>
+      <ul class="tags">
+        <li class="tag"><span>difficulty:</span> easy</li>
+        <li class="tag"><span>spice:</span> none</li>
+        <li class="tag"><span>type:</span> condiment</li>
+        <li class="tag"><span>time:</span> 5 min</li>
+        <li class="tag"><span>diet:</span> vegetarian</li>
+      </ul>
       <section>
         <h2>Recipe Details</h2>
         <ul>
@@ -70,8 +76,5 @@
       </section>
     </main>
 
-    <footer>
-      <p><a href="focaccia-bread.html">Back to Focaccia Bread</a> | <a href="../index.html">Back to Home</a></p>
-    </footer>
-  </body>
+    </body>
 </html>

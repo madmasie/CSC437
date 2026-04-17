@@ -9,18 +9,30 @@
   </head>
   <body>
     <header>
-      <nav aria-label="breadcrumb">
-        <p><a href="../index.html">Home</a> <span aria-hidden="true">&rsaquo;</span> Filter Recipes</p>
+      <a href="/index.html" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-thinking-cat" /></svg></a>
+      <div class="header-title">
+        <h1>Find a Recipe</h1>
+        <p class="header-subtitle">Search and filter by diet, difficulty, and more</p>
+      </div>
+      <nav aria-label="site">
+        
+        <a href="/auth/sign-in.html">Sign In</a> / <a href="/auth/sign-up.html">Sign Up</a>
       </nav>
-      <h1>Filter Recipes</h1>
-      <p>Browse recipe categories.</p>
     </header>
 
     <main>
       <section>
+        <h2>Search</h2>
+        <form>
+          <label for="search">Search Recipes:</label>
+          <input type="text" id="search" name="search" placeholder="e.g., pasta, chicken, vegan..." />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+      <section>
         <h2>Filter Options</h2>
-        <li>(Here are some clickable options that will appear based on search, coming soon...):</li>
-        <ul>
+        <p>(Here are some clickable options that will appear based on search, coming soon...):</p>
+        <ul class="recipe-grid">
           <li><strong>Cooking Type:</strong> Breakfast, Lunch, Dinner, Dessert</li>
           <li><strong>Flavor Profile:</strong> Savory, Creamy, Sweet, Spicy</li>
           <li><strong>Difficulty Level:</strong> Easy, Medium, Hard</li>
@@ -51,8 +63,5 @@
       </section>
     </main>
 
-    <footer>
-      <p><a href="../index.html">Back to Home</a></p>
-    </footer>
-  </body>
+    </body>
 </html>

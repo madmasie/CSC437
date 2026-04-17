@@ -21,31 +21,36 @@
 
 <body>
   <header>
-    <h1>Recipe App</h1>
-    <p>Find, filter, and save recipes based on what you have and what you're craving!!</p>
+    <a href="/index.html" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-plump-cat" /></svg></a>
+    <div class="header-title">
+      <h1>Recipe App</h1>
+      <p class="header-subtitle">Maddie's homemade recipe collection</p>
+    </div>
+    <nav aria-label="site">
       
+      <a href="/auth/sign-in.html">Sign In</a> / <a href="/auth/sign-up.html">Sign Up</a>
+    </nav>
   </header>
 
   <main>
     <nav>
       <ul>
-        <li><a href="auth/sign-in.html">Sign In</a> / <a href="auth/sign-up.html">Sign Up</a></li>
         <li><a href="filtering/index.html">Browse &amp; Filter Recipes</a></li>
         <li><a href="ingredients/owned-ingredients.html">My Ingredients</a></li>
         <li><a href="ingredients/barcode-scan.html">Scan Barcodes to add to "My Ingredients"</a></li>
         <li><a href="users/saved-recipes.html">Your Saved Recipes</a></li>
         <li><a href="users/history.html">History</a></li>
+        <li><a href="social.html" class="btn">Maddie's Social Media</a></li>
       </ul>
-      <svg class="icon">
+      <svg class="icon" aria-hidden="true">
         <use href="/icons/cats.svg#icon-plump-cat" />
       </svg>
     </nav>
 
     <section>
       <h2>Featured Recipes / Recipe of the Week</h2>
-      <!-- TODO: carousel of featured recipes -->
       <p>not yet implemented... will be a carosel of featured recipe the user can click into</p>
-      <svg class="icon">
+      <svg class="icon" aria-hidden="true">
         <use href="/icons/cats.svg#icon-handsome-cat" />
       </svg>  
     </section>
