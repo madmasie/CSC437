@@ -158,7 +158,6 @@ header a:has(svg.icon) {
 .nav-btn:hover {
   background: var(--color-teal);
   color: var(--color-cream);
-  pointer-events: none;
 }
 
 .carousel {
