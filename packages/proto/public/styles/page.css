@@ -114,7 +114,57 @@ header a:has(svg.icon) {
   line-height: 0;
 }
 
-.tags {
+.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+}
+
+.carousel-card {
+  scroll-snap-align: start;
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--color-teal);
+  border-radius: 10px;
+  padding: 16px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background 0.15s;
+}
+
+.carousel-card:hover {
+  background: color-mix(in srgb, var(--color-teal) 8%, transparent);
+}
+
+.carousel-card svg.icon {
+  height: 6em;
+  width: 6em;
+}
+
+.carousel-card-body {
+  text-align: center;
+}
+
+.carousel-card-body h3 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.carousel-card-body p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.carousel-card-body .tags {
+  justify-content: center;
+}
+
+
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
