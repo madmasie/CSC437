@@ -1,37 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe App</title>
-    <link rel="stylesheet" href="/styles/tokens.css" />
-    <link rel="stylesheet" href="/styles/page.css" />
 
-  </head>
-  <body>
-    <header>
-      <h1>Recipe App</h1>
-      <p>Find, filter, and save recipes based on what you have and what you're craving!!</p>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maddie's Recipe App</title>
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
 
-    <main>
-      <nav>
-        <ul>
-          <li><a href="auth/sign-in.html">Sign In</a> / <a href="auth/sign-up.html">Sign Up</a></li>
-          <li><a href="filtering/index.html">Browse &amp; Filter Recipes</a></li>
-          <li><a href="ingredients/owned-ingredients.html">My Ingredients</a></li>
-          <li><a href="ingredients/barcode-scan.html">Scan Barcodes to add to "My Ingredients"</a></li>
-          <li><a href="users/saved-recipes.html">Your Saved Recipes</a></li>
-          <li><a href="users/history.html">History</a></li>
-        </ul>
-      </nav>
+</head>
 
-      <section>
-        <h2>Featured Recipes / Recipe of the Week</h2>
-        <!-- TODO: carousel of featured recipes -->
-        <p>not yet implemented... will be a carosel of featured recipe the user can click into</p>
-      </section>
-    </main>
+<body>
+  <header>
+    <h1>Recipe App</h1>
+    <p>Find, filter, and save recipes based on what you have and what you're craving!!</p>
+      
+  </header>
 
-  </body>
+  <main>
+    <nav>
+      <ul>
+        <li><a href="auth/sign-in.html">Sign In</a> / <a href="auth/sign-up.html">Sign Up</a></li>
+        <li><a href="filtering/index.html">Browse &amp; Filter Recipes</a></li>
+        <li><a href="ingredients/owned-ingredients.html">My Ingredients</a></li>
+        <li><a href="ingredients/barcode-scan.html">Scan Barcodes to add to "My Ingredients"</a></li>
+        <li><a href="users/saved-recipes.html">Your Saved Recipes</a></li>
+        <li><a href="users/history.html">History</a></li>
+      </ul>
+      <svg class="icon">
+        <use href="/icons/cats.svg#icon-plump-cat" />
+      </svg>
+    </nav>
+
+    <section>
+      <h2>Featured Recipes / Recipe of the Week</h2>
+      <!-- TODO: carousel of featured recipes -->
+      <p>not yet implemented... will be a carosel of featured recipe the user can click into</p>
+      <svg class="icon">
+        <use href="/icons/cats.svg#icon-handsome-cat" />
+      </svg>  
+    </section>
+  </main>
+
+</body>
+
 </html>

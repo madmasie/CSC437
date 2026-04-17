@@ -1,17 +1,37 @@
 body {
   background-color: var(--color-background-page);
   color: var(--color-text);
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
 }
+
 header {
   background-color: var(--color-background-header);
   color: var(--color-text-header);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  font-style: normal;
 }
+
 header a {
-  color: var(--color-orange);
+  color: var(--color-red);
 }
+
 h2 {
   color: var(--color-coral);
 }
+
 a {
   color: var(--color-link);
+}
+
+svg.icon{
+  display: inline;
+  height: 15em;
+  width: 30em; 
+  vertical-align: top;
+  fill: black;
 }
