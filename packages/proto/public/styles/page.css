@@ -14,9 +14,14 @@ header {
   font-style: normal;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 20px;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
 }
+
+
+li + li { margin-top: var(--space-sm); }
+h2 { margin-bottom: var(--space-sm); }
+
 
 header svg.icon {
   flex-shrink: 0;
@@ -27,7 +32,7 @@ header svg.icon {
 header .header-title {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--space-xs);
 }
 
 header h1 {
@@ -48,7 +53,7 @@ header nav {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-sm);
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -72,34 +77,29 @@ header nav a:hover {
   color: var(--color-cream);
 }
 
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  list-style: none;
+  padding: 0;
+}
+
 nav ul {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: var(--space-md);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.recipe-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  align-items: stretch;
-}
 
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  list-style: none;
-  padding: 0;
-}
 
 main {
-  padding: 20px;
+  padding: var(--space-lg);
   max-width: 1000px;
-  margin: 0 auto;  /* centers the main content horizontally */
+  margin: 0 auto;
 }
 
 header a {
@@ -136,9 +136,9 @@ header a:has(svg.icon) {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: var(--space-sm);
   list-style: none;
-  padding: 16px 0;
+  padding: var(--space-xs);
   margin: 0;
 }
 
@@ -162,10 +162,10 @@ header a:has(svg.icon) {
 
 .carousel {
   display: flex;
-  gap: 16px;
+  gap: var(--space-md);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
+  padding-bottom: var(--space-xs);
 }
 
 .carousel-card {
@@ -176,7 +176,7 @@ header a:has(svg.icon) {
   align-items: stretch;
   border: 1px solid var(--color-teal);
   border-radius: 10px;
-  padding: 16px;
+  padding: var(--space-md);
   text-decoration: none;
   color: var(--color-text);
   transition: background 0.15s;
@@ -197,7 +197,7 @@ header a:has(svg.icon) {
 }
 
 .carousel-card-body h3 {
-  margin: 8px 0 4px;
+  margin: var(--space-sm) 0 var(--space-xs);
   font-size: 16px;
 }
 
@@ -214,7 +214,7 @@ header a:has(svg.icon) {
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-sm);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -267,14 +267,14 @@ input[type="password"] {
 
 form {
   display: flex;
-  gap: 8px;
+  gap: var(--space-sm);
   align-items: center;
 }
 
 form.auth {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 10px 16px;
+  gap: var(--space-md);
   align-items: center;
   max-width: 360px;
 }
@@ -287,3 +287,15 @@ form.auth button,
 form.auth p {
   grid-column: 1 / -1;
 }
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+
