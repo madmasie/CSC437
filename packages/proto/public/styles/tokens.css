@@ -18,7 +18,7 @@
   --space-md: 16px;
   --space-lg: 24px;
   --space-xl: 40px
-
+}
   body.dark-mode { 
     --color-background-page:   var(--color-teal);
     --color-background-header: var(--color-cream);
@@ -28,4 +28,3 @@
     --color-link:              var(--color-coral);
     --color-danger:            var(--color-red);
   }
-}
