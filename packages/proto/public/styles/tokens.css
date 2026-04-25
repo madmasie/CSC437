@@ -17,14 +17,14 @@
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
-  --space-xl: 40px
+  --space-xl: 40px;
 }
-  body.dark-mode { 
-    --color-background-page:   var(--color-teal);
-    --color-background-header: var(--color-cream);
-    --color-text:              var(--color-cream);
-    --color-text-header:       var(--color-teal);
-    --color-accent:            var(--color-orange);
-    --color-link:              var(--color-coral);
-    --color-danger:            var(--color-red);
-  }
+
+body.dark-mode {
+  --color-background-page:   #1a2e2e;
+  --color-background-header: #0f1f1f;
+  --color-text:              #f0ede6;
+  --color-text-header:       #f0ede6;
+  --color-accent:            var(--color-orange);
+  --color-link:              var(--color-orange);
+}
