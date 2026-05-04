@@ -58,26 +58,7 @@
 
     <section>
       <h2>Featured Recipes</h2>
-      <div class="carousel">
-       <recipe-card href="recipes/focaccia-bread.html" icon="icon-birthday-cat">
-          <span slot="title">Focaccia Bread</span>
-          <span slot="description">A crispy, airy Italian classic</span>
-          <span slot="difficulty">medium</span>
-          <span slot="time">2 days</span>
-        </recipe-card>
-        <recipe-card href="recipes/maddies-garlic-parm-pasta.html" icon="icon-thumbs-up-cat">
-          <span slot="title">Garlic Parm Pasta</span>
-          <span slot="description">Quick, creamy, and garlicky dinner</span>
-          <span slot="difficulty">easy</span>
-          <span slot="time">20 min</span>
-        </recipe-card>
-      <recipe-card href="recipes/maddies-focaccia-dip.html" icon="icon-fish-cat">
-        <span slot="title">Focaccia Dip</span>
-        <span slot="description">Olive oil & balsamic dipping sauce</span>
-        <span slot="difficulty">easy</span>
-        <span slot="time">5 min</span>
-      </recipe-card>
-      </div>
+      <recipe-list src="/data/recipes.json"></recipe-list>
     </section>
   </main>
 <script>
@@ -99,7 +80,9 @@
 <script type="module">
   import { define } from "@unbndl/html";
   import { RecipeCardElement } from "/js/recipe-card.js";
-  define({ "recipe-card": RecipeCardElement });
+  import { RecipeListElement } from "/js/recipe-list.js";
+  define({ "recipe-card": RecipeCardElement,
+            "recipe-list": RecipeListElement });
 </script>
 
 </body>

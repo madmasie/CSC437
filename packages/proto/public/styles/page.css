@@ -162,13 +162,7 @@ header a:has(svg.icon) {
   color: var(--color-background-page);
 }
 
-.carousel {
-  display: flex;
-  gap: var(--space-md);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: var(--space-xs);
-}
+
 
 
 
