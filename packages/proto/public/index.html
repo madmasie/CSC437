@@ -18,7 +18,13 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
     rel="stylesheet">
-
+  <script type="importmap">
+  {
+    "imports": {
+      "@unbndl/html": "https://unpkg.com/@unbndl/html"
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -53,39 +59,24 @@
     <section>
       <h2>Featured Recipes</h2>
       <div class="carousel">
-        <a class="carousel-card" href="recipes/focaccia-bread.html">
-          <svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-birthday-cat" /></svg>
-          <div class="carousel-card-body">
-            <h3>Focaccia Bread</h3>
-            <p>A crispy, airy Italian classic</p>
-            <ul class="tags">
-              <li class="tag"><span>difficulty:</span> medium</li>
-              <li class="tag"><span>time:</span> 2 days</li>
-            </ul>
-          </div>
-        </a>
-        <a class="carousel-card" href="recipes/maddies-garlic-parm-pasta.html">
-          <svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-thumbs-up-cat" /></svg>
-          <div class="carousel-card-body">
-            <h3>Garlic Parm Pasta</h3>
-            <p>Quick, creamy, and garlicky dinner</p>
-            <ul class="tags">
-              <li class="tag"><span>difficulty:</span> easy</li>
-              <li class="tag"><span>time:</span> 20 min</li>
-            </ul>
-          </div>
-        </a>
-        <a class="carousel-card" href="recipes/maddies-focaccia-dip.html">
-          <svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-fish-cat" /></svg>
-          <div class="carousel-card-body">
-            <h3>Focaccia Dip</h3>
-            <p>Olive oil &amp; balsamic dipping sauce</p>
-            <ul class="tags">
-              <li class="tag"><span>difficulty:</span> easy</li>
-              <li class="tag"><span>time:</span> 5 min</li>
-            </ul>
-          </div>
-        </a>
+       <recipe-card href="recipes/focaccia-bread.html" icon="icon-birthday-cat">
+          <span slot="title">Focaccia Bread</span>
+          <span slot="description">A crispy, airy Italian classic</span>
+          <span slot="difficulty">medium</span>
+          <span slot="time">2 days</span>
+        </recipe-card>
+        <recipe-card href="recipes/maddies-garlic-parm-pasta.html" icon="icon-thumbs-up-cat">
+          <span slot="title">Garlic Parm Pasta</span>
+          <span slot="description">Quick, creamy, and garlicky dinner</span>
+          <span slot="difficulty">easy</span>
+          <span slot="time">20 min</span>
+        </recipe-card>
+      <recipe-card href="recipes/maddies-focaccia-dip.html" icon="icon-fish-cat">
+        <span slot="title">Focaccia Dip</span>
+        <span slot="description">Olive oil & balsamic dipping sauce</span>
+        <span slot="difficulty">easy</span>
+        <span slot="time">5 min</span>
+      </recipe-card>
       </div>
     </section>
   </main>
@@ -105,6 +96,12 @@
     }
   });
 </script>
+<script type="module">
+  import { define } from "@unbndl/html";
+  import { RecipeCardElement } from "/js/recipe-card.js";
+  define({ "recipe-card": RecipeCardElement });
+</script>
+
 </body>
 
 </html>
