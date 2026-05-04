@@ -19,7 +19,7 @@ header {
 }
 
 
-li + li { margin-top: var(--space-sm); }
+
 h2 { margin-bottom: var(--space-sm); }
 
 
