@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "set STATIC=../proto/public && nodemon src/index.ts",
+    "dev": "nodemon",
     "build": "npx tsc",
     "start": "npm run build && npm run start:node",
     "start:node": "node dist/index.js",
