@@ -9,7 +9,7 @@ app.use(express.static(staticDir));
 
 app.get("/hello", (req: Request, res: Response) => {
     res.send("Hello, World");
-);
+}); 
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

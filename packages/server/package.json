@@ -2,8 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "set STATIC=../proto/public && nodemon src/index.ts",
     "build": "npx tsc",
     "start": "npm run build && npm run start:node",
     "start:node": "node dist/index.js",
@@ -19,5 +20,8 @@
     "cross-env": "^10.1.0",
     "nodemon": "^3.1.14",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }
