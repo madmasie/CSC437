@@ -1,4 +1,4 @@
-import { Recipe } from "../models/index.js";
+import { Recipe } from "../models/index.ts";
 
 
 const recipes: { [key: string]: Recipe } = {
