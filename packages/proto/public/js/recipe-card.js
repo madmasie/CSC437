@@ -35,9 +35,13 @@ export class RecipeCardElement extends HTMLElement {
   }
 
   static styles = css`
-    a {
-      scroll-snap-align: start;
+    :host {
+      display: flex;
       flex: 0 0 260px;
+      scroll-snap-align: start;
+    }
+    a {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: stretch;

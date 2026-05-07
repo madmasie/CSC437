@@ -4,6 +4,7 @@
   --color-coral:  #e76e50;
   --color-cream:  #f8f0e8;
   --color-red:    #d10000;
+ --color-light-teal: #6fb0aa;
 
   --color-background-page:   var(--color-cream);
   --color-background-header: var(--color-teal);
@@ -12,6 +13,7 @@
   --color-accent:            var(--color-coral);
   --color-link:              var(--color-orange);
   --color-danger:            var(--color-red);
+  --color-button-bg:         var(--color-background-page);
 
   --space-xs: 4px;
   --space-sm: 8px;
@@ -27,4 +29,5 @@ body.dark-mode {
   --color-text-header:       #f0ede6;
   --color-accent:            var(--color-orange);
   --color-link:              var(--color-orange);
+  --color-button-bg:         var(--color-light-teal);
 }

@@ -145,8 +145,9 @@ header a:has(svg.icon) {
 .nav-btn {
   display: inline-block;
   padding: 10px 22px;
-  min-width: 200px;
+  flex: 1 1 auto;
   text-align: center;
+  background: var(--color-button-bg);
   border: 2px solid var(--color-text);
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
@@ -155,6 +156,11 @@ header a:has(svg.icon) {
   color: var(--color-text);
   text-decoration: none;
   transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.nav-buttons li {
+  display: contents;
 }
 
 .nav-btn:hover {
