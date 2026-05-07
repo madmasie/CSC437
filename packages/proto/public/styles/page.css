@@ -145,7 +145,7 @@ header a:has(svg.icon) {
 .nav-btn {
   display: inline-block;
   padding: 10px 22px;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   text-align: center;
   background: var(--color-button-bg);
   border: 2px solid var(--color-card-text);
