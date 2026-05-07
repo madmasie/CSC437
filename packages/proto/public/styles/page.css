@@ -138,7 +138,7 @@ header a:has(svg.icon) {
   justify-content: center;
   gap: var(--space-sm);
   list-style: none;
-  padding: var(--space-xs);
+  padding: var(--space-md) var(--space-lg);
   margin: 0;
 }
 
