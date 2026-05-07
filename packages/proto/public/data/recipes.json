@@ -22,5 +22,13 @@
     "description": "Olive oil & balsamic dipping sauce",
     "difficulty": "easy",
     "time": "5 min"
+  },
+  {
+    "href": "recipes/key-lime-loaf.html",
+    "icon": "icon-yipee-cat",
+    "title": "Key Lime Loaf",
+    "description": "Zesty loaf with key lime glaze",
+    "difficulty": "medium",
+    "time": "1 hr 15 min"
   }
 ]
