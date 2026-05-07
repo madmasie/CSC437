@@ -45,15 +45,16 @@ export class RecipeCardElement extends HTMLElement {
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      border: 1px solid var(--color-text);
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-card-text);
       border-radius: 10px;
       padding: var(--space-md);
       text-decoration: none;
-      color: var(--color-text);
+      color: var(--color-card-text);
       transition: background 0.15s;
     }
-    a:hover { background: color-mix(in srgb, var(--color-teal) 8%, transparent); }
-    .icon { display: inline; height: 6em; width: 6em; fill: black; }
+    a:hover { background: color-mix(in srgb, var(--color-card-text) 12%, var(--color-card-bg)); }
+    .icon { display: inline; height: 6em; width: 6em; fill: var(--color-card-text); }
     .body { text-align: center; flex: 1; }
     h3 { margin: var(--space-sm) 0 var(--space-xs); font-size: 16px; font-family: 'Playfair Display', serif; }
     p { margin: 0 0 10px; font-size: 13px; opacity: 0.7; font-family: 'Inter', sans-serif; }
@@ -62,7 +63,7 @@ export class RecipeCardElement extends HTMLElement {
       display: inline-block;
       padding: 4px 12px;
       border-radius: 999px;
-      border: 1px solid var(--color-text);
+      border: 1px solid var(--color-card-text);
       font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 500;

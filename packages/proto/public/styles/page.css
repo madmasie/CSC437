@@ -148,12 +148,12 @@ header a:has(svg.icon) {
   flex: 1 1 auto;
   text-align: center;
   background: var(--color-button-bg);
-  border: 2px solid var(--color-text);
+  border: 2px solid var(--color-card-text);
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--color-card-text);
   text-decoration: none;
   transition: background 0.15s, color 0.15s;
   white-space: nowrap;
@@ -164,8 +164,8 @@ header a:has(svg.icon) {
 }
 
 .nav-btn:hover {
-  background: var(--color-text);
-  color: var(--color-background-page);
+  background: var(--color-card-text);
+  color: var(--color-button-bg);
 }
 
 
