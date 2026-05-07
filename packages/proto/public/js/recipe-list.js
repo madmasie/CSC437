@@ -41,6 +41,10 @@ export class RecipeListElement extends HTMLElement {
   }
 
   static styles = css`
+    :host {
+      display: block;
+      width: 100%;
+    }
     .carousel {
       display: flex;
       gap: var(--space-md);
