@@ -5,6 +5,7 @@ export class RecipeCardElement extends HTMLElement {
   static template = html`
     <template>
       <a part="link">
+        <img class="thumb" alt="" />
         <svg class="icon" aria-hidden="true"><use /></svg>
         <div class="body">
           <h3><slot name="title"></slot></h3>
@@ -25,13 +26,25 @@ export class RecipeCardElement extends HTMLElement {
       .styles(reset.styles, RecipeCardElement.styles);
   }
 
-  static observedAttributes = ["href", "icon", "difficulty", "time"];
+  static observedAttributes = ["href", "icon", "image", "difficulty", "time"];
 
   attributeChangedCallback(name, _, val) {
     const root = this.shadowRoot;
     if (!root) return;
     if (name === "href") root.querySelector("a").href = val;
     if (name === "icon") root.querySelector("use").setAttribute("href", `/icons/cats.svg#${val}`);
+    if (name === "image") {
+      const img = root.querySelector(".thumb");
+      const svg = root.querySelector(".icon");
+      if (val) {
+        img.src = val;
+        img.hidden = false;
+        svg.hidden = true;
+      } else {
+        img.hidden = true;
+        svg.hidden = false;
+      }
+    }
   }
 
   static styles = css`
@@ -55,6 +68,7 @@ export class RecipeCardElement extends HTMLElement {
     }
     a:hover { background: color-mix(in srgb, var(--color-card-text) 12%, var(--color-card-bg)); }
     .icon { display: inline; height: 6em; width: 6em; fill: var(--color-card-text); }
+    .thumb { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; display: block; }
     .body { text-align: center; flex: 1; }
     h3 { margin: var(--space-sm) 0 var(--space-xs); font-size: 16px; font-family: 'Playfair Display', serif; }
     p { margin: 0 0 10px; font-size: 13px; opacity: 0.7; font-family: 'Inter', sans-serif; }

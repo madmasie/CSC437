@@ -1,8 +1,8 @@
 import { html, css, shadow } from "@unbndl/html";
 
-function renderCard({ href, icon, title, description, difficulty, time }) {
+function renderCard({ href, icon, image, title, description, difficulty, time }) {
   return html`
-    <recipe-card href=${href} icon=${icon}>
+    <recipe-card href=${href} icon=${icon} image=${image || ""}>
       <span slot="title">${title}</span>
       <span slot="description">${description}</span>
       <span slot="difficulty">${difficulty}</span>
