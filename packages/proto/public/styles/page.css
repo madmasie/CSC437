@@ -98,8 +98,6 @@ nav ul {
 
 main {
   padding: var(--space-lg);
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 header a {
