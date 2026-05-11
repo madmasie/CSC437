@@ -20,3 +20,6 @@ app.use("/api/recipes", recipes);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+//http://localhost:3000/api/recipes
+//http://localhost:3000/api/recipes/focaccia-bread
