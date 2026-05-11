@@ -1,38 +1,29 @@
+import { Schema, model } from "mongoose";
 import { Recipe } from "../models/index.ts";
 
+const recipeSchema = new Schema<Recipe>(
+  {
+    id: String,
+    href: String,
+    icon: String,
+    title: String,
+    description: String,
+    difficulty: String,
+    time: String,
+  },
+  { collection: "recipes" }
+);
 
-const recipes: { [key: string]: Recipe } = {
-  "focaccia-bread": {
-    id: "focaccia-bread",
-    href: "recipes/focaccia-bread.html",
-    icon: "icon-birthday-cat",
-    title: "Focaccia Bread",
-    description: "A crispy, airy Italian classic",
-    difficulty: "medium",
-    time: "2 days",
-  },
-  "garlic-parm-pasta": {
-    id: "garlic-parm-pasta",
-    href: "recipes/maddies-garlic-parm-pasta.html",
-    icon: "icon-thumbs-up-cat",
-    title: "Garlic Parm Pasta",
-    description: "Quick, creamy, and garlicky dinner",
-    difficulty: "easy",
-    time: "20 min",
-  },
-  "focaccia-dip": {
-    id: "focaccia-dip",
-    href: "recipes/maddies-focaccia-dip.html",
-    icon: "icon-fish-cat",
-    title: "Focaccia Dip",
-    description: "Olive oil & balsamic dipping sauce",
-    difficulty: "easy",
-    time: "5 min",
-  },
-};
+const RecipeModel = model<Recipe>("Recipe", recipeSchema);
 
-function get(id: string): Recipe {
-  return recipes[id];
+function index(): Promise<Recipe[]> {
+  return RecipeModel.find();
 }
 
-export default { get };
+function get(id: string): Promise<Recipe | undefined> {
+  return RecipeModel.find({ id })
+    .then((list) => list[0])
+    .catch(() => { throw `${id} Not Found`; });
+}
+
+export default { index, get };

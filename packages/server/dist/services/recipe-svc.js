@@ -1,33 +1,20 @@
-const recipes = {
-    "focaccia-bread": {
-        id: "focaccia-bread",
-        href: "recipes/focaccia-bread.html",
-        icon: "icon-birthday-cat",
-        title: "Focaccia Bread",
-        description: "A crispy, airy Italian classic",
-        difficulty: "medium",
-        time: "2 days",
-    },
-    "garlic-parm-pasta": {
-        id: "garlic-parm-pasta",
-        href: "recipes/maddies-garlic-parm-pasta.html",
-        icon: "icon-thumbs-up-cat",
-        title: "Garlic Parm Pasta",
-        description: "Quick, creamy, and garlicky dinner",
-        difficulty: "easy",
-        time: "20 min",
-    },
-    "focaccia-dip": {
-        id: "focaccia-dip",
-        href: "recipes/maddies-focaccia-dip.html",
-        icon: "icon-fish-cat",
-        title: "Focaccia Dip",
-        description: "Olive oil & balsamic dipping sauce",
-        difficulty: "easy",
-        time: "5 min",
-    },
-};
-function get(id) {
-    return recipes[id];
+import { Schema, model } from "mongoose";
+const recipeSchema = new Schema({
+    id: String,
+    href: String,
+    icon: String,
+    title: String,
+    description: String,
+    difficulty: String,
+    time: String,
+}, { collection: "recipes" });
+const RecipeModel = model("Recipe", recipeSchema);
+function index() {
+    return RecipeModel.find();
 }
-export default { get };
+function get(id) {
+    return RecipeModel.find({ id })
+        .then((list) => list[0])
+        .catch(() => { throw `${id} Not Found`; });
+}
+export default { index, get };
