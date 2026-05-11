@@ -1,6 +1,14 @@
 import express, { Request, Response } from "express";
 import Recipes from "./services/recipe-svc.ts";
 
+
+// in src/index.ts
+// add this import near the top
+import { connect } from "./services/mongo.ts";
+
+connect("recipes"); // use your own db name here
+
+
 const app = express();
 const port = process.env.PORT || 3000;
 const staticDir = process.env.STATIC || "public";

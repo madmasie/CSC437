@@ -1,5 +1,9 @@
 import express from "express";
 import Recipes from "./services/recipe-svc.js";
+// in src/index.ts
+// add this import near the top
+import { connect } from "./services/mongo.js";
+connect("recipes"); // use your own db name here
 const app = express();
 const port = process.env.PORT || 3000;
 const staticDir = process.env.STATIC || "public";
