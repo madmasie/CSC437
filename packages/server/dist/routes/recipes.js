@@ -7,7 +7,7 @@ router.get("/", (_, res) => {
         .catch((err) => res.status(500).send(err));
 });
 router.get("/:id", (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id;
     Recipes.get(id)
         .then((recipe) => {
         if (!recipe)
