@@ -34,7 +34,7 @@ export class LoginFormElement extends HTMLElement {
     console.log("Posting login form:", endpoint, body, event);
     fetch(endpoint, { method, headers, body })
       .then((res) => {
-        if (res.status !== 200)
+        if (!res.ok)
           throw `Form submission failed: Status ${res.status}`;
         return res.json();
       })
