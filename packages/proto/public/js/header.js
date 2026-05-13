@@ -20,7 +20,7 @@ export class HeaderElement extends HTMLElement {
         <p class="header-subtitle">Maddie's homemade recipe collection</p>
       </div>
       <nav class=${($) => $.authenticated ? "logged-in" : "logged-out"}>
-        <p>Hello, ${($) => $.username || "traveler"}</p>
+        <p>Hello, ${($) => $.username || "chef"}</p>
         <menu>
           <li class="when-signed-in">
             <button>Sign Out</button>
