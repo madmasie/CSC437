@@ -33,7 +33,7 @@ router.post("/", (req: Request, res: Response) => {
 
 // in src/routes/recipes.ts, after our previous routes
 router.put("/:id", (req: Request, res: Response) => {
-  const { id } = req.params;
+  const id = req.params.id;
   const newRecipe = req.body;
 
   Recipes.update(id, newRecipe)
@@ -42,7 +42,7 @@ router.put("/:id", (req: Request, res: Response) => {
 });
 
 router.delete("/:id", (req: Request, res: Response) => {
-  const { id } = req.params;
+  const id = req.params.id;
 
   Recipes.remove(id)
     .then(() => res.status(204).end())

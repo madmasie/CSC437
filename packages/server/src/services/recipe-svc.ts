@@ -33,21 +33,21 @@ function create(json: Recipe): Promise<Recipe> {
 }
 
 function update(
-  id: String,
+  id: string,
   recipe: Recipe
 ): Promise<Recipe | undefined> {
   return RecipeModel.findOneAndUpdate(
-    { id },
+    { id: id },
     recipe,
     { new: true })
   .then((updated) => {
     if (!updated) throw `${id} not updated`;
-    else return updated as Recipe;
+    else return updated as unknown as Recipe;
   });
 }
 
-function remove(id: String): Promise<void> {
-  return RecipeModel.findOneAndDelete({ id }).then(
+function remove(id: string): Promise<void> {
+  return RecipeModel.findOneAndDelete({ id: id }).then(
     (deleted) => {
       if (!deleted) throw `${id} not deleted`;
     }
