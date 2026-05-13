@@ -20,7 +20,7 @@ export class HeaderElement extends HTMLElement {
         <p class="header-subtitle">Maddie's homemade recipe collection</p>
       </div>
       <nav class=${($) => $.authenticated ? "logged-in" : "logged-out"}>
-        <p>Hello, ${($) => $.username || "chef"}</p>
+        <p>Hello, ${($) => $.username || "new user"}</p>
         <menu>
           <li class="when-signed-in">
             <button>Sign Out</button>
@@ -43,6 +43,7 @@ export class HeaderElement extends HTMLElement {
       gap: var(--space-md);
       padding: var(--space-sm) var(--space-md);
     }
+    nav { margin-left: auto; }
     .icon { height: 2.5em; width: 2.5em; fill: currentColor; }
     menu { list-style: none; padding: 0; margin: 0; }
     p { margin: 0; }
