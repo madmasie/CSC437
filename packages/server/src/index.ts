@@ -1,6 +1,10 @@
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo.ts";
 import recipes from "./routes/recipes.ts";
+// in src/index.ts
+// near the top, with the other imports
+import auth from "./routes/auth.ts";
+
 
 connect("recipes");
 
@@ -15,6 +19,8 @@ app.get("/hello", (_: Request, res: Response) => {
   res.send("Hello, World");
 });
 
+// further down, near where you use the profiles router
+app.use("/auth", auth);
 app.use("/api/recipes", recipes);
 
 app.listen(port, () => {
