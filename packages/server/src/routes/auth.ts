@@ -9,9 +9,10 @@ import jwt from "jsonwebtoken";
 
 import credentials from "../services/credential-svc.ts";
 
+dotenv.config();
+
 const router = express.Router();
 
-dotenv.config();
 const TOKEN_SECRET: string =
   process.env.TOKEN_SECRET || "NOT_A_SECRET";
 

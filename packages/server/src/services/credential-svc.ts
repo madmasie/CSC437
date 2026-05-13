@@ -23,27 +23,20 @@ const credentialModel = model<Credential>(
   credentialSchema
 );
 
-// in src/services/credential-svc.ts
 function create(username: string, password: string): Promise<Credential> {
-    return credentialModel
-      .find({ username })
-      .then((found: Credential[]) => {
-        if (found.length) throw `Username exists: ${username}`
-      })
-      .then(() =>
-        bcrypt
-          .genSalt(10)
-          .then((salt: string) => bcrypt.hash(password, salt))
-          .then((hashedPassword: string) => {
-            const creds = new credentialModel({
-              username,
-              hashedPassword
-            });
-            return creds.save();
-          })
-      );
-    
-};
+  return credentialModel
+    .find({ username })
+    .then((found: Credential[]) => {
+      if (found.length) throw `Username exists: ${username}`;
+      return bcrypt
+        .genSalt(10)
+        .then((salt: string) => bcrypt.hash(password, salt))
+        .then((hashedPassword: string) => {
+          const creds = new credentialModel({ username, hashedPassword });
+          return creds.save();
+        });
+    });
+}
 
 
 // in src/services/credential-svc.ts
