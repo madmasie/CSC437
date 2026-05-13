@@ -2,8 +2,6 @@
 import bcrypt from "bcryptjs";
 import { Schema, model } from "mongoose";
 import { Credential } from "../models";
-// in src/services/credential-svc.ts
-export default { create, verify };
 
 const credentialSchema = new Schema<Credential>(
   {
@@ -72,3 +70,6 @@ function verify(username: string, password: string)
         })
       );
 }
+
+// in src/services/credential-svc.ts
+export default { create, verify };

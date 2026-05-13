@@ -16,6 +16,26 @@ const TOKEN_SECRET: string =
   process.env.TOKEN_SECRET || "NOT_A_SECRET";
 
 
+// in src/routes/auth.ts
+export function authenticateUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const authHeader = req.headers["authorization"];
+  //Getting the 2nd part of the auth header (the token)
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    res.status(401).end();
+  } else {
+    jwt.verify(token, TOKEN_SECRET, (error: unknown, decoded: unknown) => {
+      if (decoded) next();
+      else res.status(401).end();
+    });
+  }
+}
+
 // in src/routes/auth.js
 router.post("/register", (req: Request, res: Response) => {
   const { username, password } = req.body; // from form

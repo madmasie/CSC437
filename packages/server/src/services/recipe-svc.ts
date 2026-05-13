@@ -26,4 +26,32 @@ function get(id: string): Promise<Recipe | undefined> {
     .catch(() => { throw `${id} Not Found`; });
 }
 
-export default { index, get };
+// in src/services/recipe-svc.ts:
+function create(json: Recipe): Promise<Recipe> {
+  const t = new RecipeModel(json);
+  return t.save();
+}
+
+function update(
+  id: String,
+  recipe: Recipe
+): Promise<Recipe | undefined> {
+  return RecipeModel.findOneAndUpdate(
+    { id },
+    recipe,
+    { new: true })
+  .then((updated) => {
+    if (!updated) throw `${id} not updated`;
+    else return updated as Recipe;
+  });
+}
+
+function remove(id: String): Promise<void> {
+  return RecipeModel.findOneAndDelete({ id }).then(
+    (deleted) => {
+      if (!deleted) throw `${id} not deleted`;
+    }
+  );
+}
+
+export default { index, get, create, update, remove };

@@ -20,4 +20,33 @@ router.get("/:id", (req: Request, res: Response) => {
     .catch((err) => res.status(404).send(err));
 });
 
+// in src/routes/recipes.ts
+router.post("/", (req: Request, res: Response) => {
+  const newRecipe = req.body;
+
+  Recipes.create(newRecipe)
+    .then((recipe: Recipe) =>
+      res.status(201).json(recipe)
+    )
+    .catch((err) => res.status(500).send(err));
+});
+
+// in src/routes/recipes.ts, after our previous routes
+router.put("/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  const newRecipe = req.body;
+
+  Recipes.update(id, newRecipe)
+    .then((recipe: Recipe | undefined) => res.json(recipe))
+    .catch((err) => res.status(404).end());
+});
+
+router.delete("/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  Recipes.remove(id)
+    .then(() => res.status(204).end())
+    .catch((err) => res.status(404).send(err));
+});
+
 export default router;
