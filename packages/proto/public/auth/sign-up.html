@@ -1,39 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>Register</title>
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
     <link rel="stylesheet" href="/styles/page.css" />
-  </head>
-  <body>
-    <header>
-      <a href="/index.html" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-yipee-cat" /></svg></a>
-      <div class="header-title">
-        <h1>Sign Up</h1>
-        <p class="header-subtitle">Create your free account</p>
-      </div>
-      <nav aria-label="site">
-        
-        <a href="/auth/sign-in.html">Sign In</a> <a href="/auth/sign-up.html" aria-current="page">Sign Up</a>
-      </nav>
-    </header>
-    <main>
-      <form class="auth">
-        <div>
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit">Sign Up</button>
-        <p>Already have an account? <a href="sign-in.html">Sign In</a></p>
+    <script type="importmap">
+      {
+        "imports": {
+          "@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+          "@unbndl/html": "https://unpkg.com/@unbndl/html",
+          "@unbndl/view": "https://unpkg.com/@unbndl/view"
+        }
+      }
+    </script>
+    <script type="module">
+      import { define } from "@unbndl/html";
+      import { Auth } from "@unbndl/auth";
+      import { LoginFormElement } from "/js/login-form.js";
 
-      </form>
-    </main>
-    </body>
+      define({
+        "auth-provider": Auth.Provider,
+        "login-form": LoginFormElement
+      });
+    </script>
+  </head>
+  <body class="page">
+    <auth-provider>
+      <h2>Create Account</h2>
+      <main class="card">
+        <login-form api="/auth/register">
+          <label>
+            <span>Username:</span>
+            <input name="username" autocomplete="off" />
+          </label>
+          <label>
+            <span>Password:</span>
+            <input type="password" name="password" />
+          </label>
+          <span slot="submit-label">Register</span>
+        </login-form>
+      </main>
+      <p>
+        Already have an account? <a href="/login.html">Sign in</a>
+      </p>
+    </auth-provider>
+  </body>
 </html>
