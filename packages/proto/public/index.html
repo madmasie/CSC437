@@ -21,68 +21,49 @@
   <script type="importmap">
   {
     "imports": {
-      "@unbndl/html": "https://unpkg.com/@unbndl/html"
+      "@unbndl/html": "https://unpkg.com/@unbndl/html",
+      "@unbndl/auth": "https://unpkg.com/@unbndl/auth",
+      "@unbndl/view": "https://unpkg.com/@unbndl/view"
     }
   }
   </script>
 </head>
 
 <body>
-  <header>
-    <a href="/index.html" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-plump-cat" /></svg></a>
-    <div class="header-title">
-      <h1>Maddie's Recipe Collection</h1>
-      <p class="header-subtitle">Maddie's homemade recipe collection</p>
-    </div>
-    <nav aria-label="site">
-      
-      <a href="/auth/sign-in.html">Sign In</a> <a href="/auth/sign-up.html">Sign Up</a>
+  <auth-provider>
+    <app-header></app-header>
+
+    <nav>
+      <ul class="nav-buttons">
+        <li><a href="filtering/index.html" class="nav-btn">Browse &amp; Filter Recipes</a></li>
+        <li><a href="ingredients/owned-ingredients.html" class="nav-btn">My Ingredients</a></li>
+        <li><a href="ingredients/barcode-scan.html" class="nav-btn">Scan Barcodes</a></li>
+        <li><a href="users/saved-recipes.html" class="nav-btn">Your Saved Recipes</a></li>
+        <li><a href="users/history.html" class="nav-btn">History</a></li>
+        <li><a href="about.html" class="nav-btn">About Me</a></li>
+      </ul>
     </nav>
-    <label id="dark-mode-label">
-      <input type="checkbox" autocomplete="off" />
-      Dark Mode
-    </label>
-  </header>
 
-  <nav>
-    <ul class="nav-buttons">
-      <li><a href="filtering/index.html" class="nav-btn">Browse &amp; Filter Recipes</a></li>
-      <li><a href="ingredients/owned-ingredients.html" class="nav-btn">My Ingredients</a></li>
-      <li><a href="ingredients/barcode-scan.html" class="nav-btn">Scan Barcodes</a></li>
-      <li><a href="users/saved-recipes.html" class="nav-btn">Your Saved Recipes</a></li>
-      <li><a href="users/history.html" class="nav-btn">History</a></li>
-      <li><a href="about.html" class="nav-btn">About Me</a></li>
-    </ul>
-  </nav>
+    <main>
+      <section>
+        <h2>Featured Recipes</h2>
+        <recipe-list src="/data/recipes.json"></recipe-list>
+      </section>
+    </main>
+  </auth-provider>
 
-  <main>
-    <section>
-      <h2>Featured Recipes</h2>
-      <recipe-list src="/data/recipes.json"></recipe-list>
-    </section>
-  </main>
-<script>
-  document.getElementById("dark-mode-label").onchange = (event) => {
-    event.stopPropagation();
-    document.body.dispatchEvent(new CustomEvent("darkmode:toggle", {
-      detail: { checked: event.target.checked }
-    }));
-  };
-
-  document.body.addEventListener("darkmode:toggle", (event) => {
-    if (event.detail.checked) {
-      event.currentTarget.classList.add("dark-mode");
-    } else {
-      event.currentTarget.classList.remove("dark-mode");
-    }
-  });
-</script>
 <script type="module">
   import { define } from "@unbndl/html";
+  import { Auth } from "@unbndl/auth";
   import { RecipeCardElement } from "/js/recipe-card.js";
   import { RecipeListElement } from "/js/recipe-list.js";
-  define({ "recipe-card": RecipeCardElement,
-            "recipe-list": RecipeListElement });
+  import { HeaderElement } from "/js/header.js";
+  define({
+    "auth-provider": Auth.Provider,
+    "app-header": HeaderElement,
+    "recipe-card": RecipeCardElement,
+    "recipe-list": RecipeListElement
+  });
 </script>
 
 </body>

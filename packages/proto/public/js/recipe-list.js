@@ -1,4 +1,6 @@
 import { html, css, shadow } from "@unbndl/html";
+import { createViewModel } from "@unbndl/view";
+import { fromAuth } from "@unbndl/auth";
 
 function renderCard({ href, icon, image, title, description, difficulty, time }) {
   return html`
@@ -12,6 +14,18 @@ function renderCard({ href, icon, image, title, description, difficulty, time })
 }
 
 export class RecipeListElement extends HTMLElement {
+  viewModel = createViewModel({
+    authenticated: false,
+    token: undefined
+  }).with(fromAuth(this), "authenticated", "token");
+
+  get authorization() {
+    const $ = this.viewModel.toObject();
+    if ($.authenticated)
+      return { Authorization: `Bearer ${$.token}` };
+    else return {};
+  }
+
   constructor() {
     super();
     shadow(this).styles(RecipeListElement.styles);
@@ -22,21 +36,21 @@ export class RecipeListElement extends HTMLElement {
   attributeChangedCallback(name, _, newValue) {
     if (name === "src") {
       this.hydrate(newValue).then((data) => {
-        const frag = shadow(this).replace(RecipeListElement.render(data));
+        if (!data) return;
+        shadow(this).replace(RecipeListElement.render(data));
         const root = this.shadowRoot;
-        const carousel = root.querySelector(".carousel");
         root.querySelector(".arrow-left").addEventListener("click", () => {
-          carousel.scrollBy({ left: -280, behavior: "smooth" });
+          root.querySelector(".carousel").scrollBy({ left: -280, behavior: "smooth" });
         });
         root.querySelector(".arrow-right").addEventListener("click", () => {
-          carousel.scrollBy({ left: 280, behavior: "smooth" });
+          root.querySelector(".carousel").scrollBy({ left: 280, behavior: "smooth" });
         });
       });
     }
   }
 
   hydrate(src) {
-    return fetch(src)
+    return fetch(src, { headers: this.authorization })
       .then((response) => {
         if (response.status !== 200) throw `HTTP Status ${response.status}`;
         return response.json();
