@@ -20,6 +20,14 @@
     "packages/*"
   ],
   "dependencies": {
+    "@unbndl/auth": "^1.0.4",
+    "@unbndl/html": "^1.0.5",
+    "@unbndl/switch": "^1.0.3",
+    "@unbndl/view": "^1.0.5",
     "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "vite": "^8.0.13"
   }
 }
