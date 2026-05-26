@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon",
-    "build": "node ../../node_modules/typescript/bin/tsc",
+    "build": "tsc",
     "start": "npm run build && npm run start:node",
     "start:node": "node dist/index.js",
     "start:api": "cross-env STATIC=./public npm run start",

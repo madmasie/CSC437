@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login – Maddie's Recipe App</title>
+    <title>Create Account – Maddie's Recipe App</title>
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
     <link rel="stylesheet" href="/styles/page.css" />
@@ -24,7 +24,7 @@
         constructor() {
           super();
           const form = document.createElement("form");
-          form.innerHTML = `<slot></slot><button type="submit">Login</button>`;
+          form.innerHTML = `<slot></slot><button type="submit"><slot name="submit-label">Register</slot></button>`;
           this.attachShadow({ mode: "open" }).appendChild(form);
           this.shadowRoot.addEventListener("submit", (ev) =>
             this.submitLogin(ev),
@@ -67,9 +67,9 @@
   <body>
     <auth-provider>
       <main class="page">
-        <h2>User Login</h2>
+        <h2>Create Account</h2>
         <div class="card">
-          <login-form api="/auth/login">
+          <login-form api="/auth/register">
             <label>
               <span>Username:</span>
               <input name="username" autocomplete="off" />
@@ -78,9 +78,10 @@
               <span>Password:</span>
               <input type="password" name="password" />
             </label>
+            <span slot="submit-label">Register</span>
           </login-form>
         </div>
-        <p>New here? <a href="/sign-up.html">Create an account!</a></p>
+        <p>Already have an account? <a href="/login.html">Sign in</a></p>
       </main>
     </auth-provider>
   </body>

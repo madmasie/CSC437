@@ -2,18 +2,6 @@ import { css, html, shadow } from "@unbndl/html";
 
 export class HomeViewElement extends HTMLElement {
   static template = html`<template>
-    <nav>
-      <ul class="nav-buttons">
-        <li>
-          <a href="/app/recipes" class="nav-btn">Browse &amp; Filter Recipes</a>
-        </li>
-        <li><a href="/app/ingredients" class="nav-btn">My Ingredients</a></li>
-        <li><a href="/app/barcode" class="nav-btn">Scan Barcodes</a></li>
-        <li><a href="/app/saved" class="nav-btn">Your Saved Recipes</a></li>
-        <li><a href="/app/history" class="nav-btn">History</a></li>
-        <li><a href="/app/about" class="nav-btn">About Me</a></li>
-      </ul>
-    </nav>
     <main>
       <section>
         <h2>Featured Recipes</h2>
