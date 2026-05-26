@@ -2,7 +2,15 @@ import { html, css, shadow } from "@unbndl/html";
 import { createViewModel } from "@unbndl/view";
 import { fromAuth } from "@unbndl/auth";
 
-function renderCard({ href, icon, image, title, description, difficulty, time }) {
+function renderCard({
+  href,
+  icon,
+  image,
+  title,
+  description,
+  difficulty,
+  time,
+}) {
   return html`
     <recipe-card href=${href} icon=${icon} image=${image || ""}>
       <span slot="title">${title}</span>
@@ -16,13 +24,12 @@ function renderCard({ href, icon, image, title, description, difficulty, time })
 export class RecipeListElement extends HTMLElement {
   viewModel = createViewModel({
     authenticated: false,
-    token: undefined
+    token: undefined,
   }).with(fromAuth(this), "authenticated", "token");
 
   get authorization() {
     const $ = this.viewModel.toObject();
-    if ($.authenticated)
-      return { Authorization: `Bearer ${$.token}` };
+    if ($.authenticated) return { Authorization: `Bearer ${$.token}` };
     else return {};
   }
 
@@ -40,10 +47,14 @@ export class RecipeListElement extends HTMLElement {
         shadow(this).replace(RecipeListElement.render(data));
         const root = this.shadowRoot;
         root.querySelector(".arrow-left").addEventListener("click", () => {
-          root.querySelector(".carousel").scrollBy({ left: -280, behavior: "smooth" });
+          root
+            .querySelector(".carousel")
+            .scrollBy({ left: -280, behavior: "smooth" });
         });
         root.querySelector(".arrow-right").addEventListener("click", () => {
-          root.querySelector(".carousel").scrollBy({ left: 280, behavior: "smooth" });
+          root
+            .querySelector(".carousel")
+            .scrollBy({ left: 280, behavior: "smooth" });
         });
       });
     }
@@ -61,9 +72,13 @@ export class RecipeListElement extends HTMLElement {
   static render(data) {
     return html`
       <div class="carousel-wrapper">
-        <button class="arrow arrow-left" aria-label="Scroll left">&#8249;</button>
+        <button class="arrow arrow-left" aria-label="Scroll left">
+          &#8249;
+        </button>
         <div class="carousel">${(data || []).map(renderCard)}</div>
-        <button class="arrow arrow-right" aria-label="Scroll right">&#8250;</button>
+        <button class="arrow arrow-right" aria-label="Scroll right">
+          &#8250;
+        </button>
       </div>
     `;
   }
@@ -87,7 +102,9 @@ export class RecipeListElement extends HTMLElement {
       scrollbar-width: none;
       padding-bottom: var(--space-xs);
     }
-    .carousel::-webkit-scrollbar { display: none; }
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
     .arrow {
       flex-shrink: 0;
       width: 36px;
@@ -102,7 +119,9 @@ export class RecipeListElement extends HTMLElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.15s, color 0.15s;
+      transition:
+        background 0.15s,
+        color 0.15s;
     }
     .arrow:hover {
       background: var(--color-card-text);

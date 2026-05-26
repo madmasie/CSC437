@@ -25,9 +25,7 @@ router.post("/", (req: Request, res: Response) => {
   const newRecipe = req.body;
 
   Recipes.create(newRecipe)
-    .then((recipe: Recipe) =>
-      res.status(201).json(recipe)
-    )
+    .then((recipe: Recipe) => res.status(201).json(recipe))
     .catch((err) => res.status(500).send(err));
 });
 

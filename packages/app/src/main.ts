@@ -11,20 +11,22 @@ import { RecipeViewElement } from "./views/recipe-view.ts";
 const routes = [
   {
     path: "/app/recipe/:id",
-    view: html`<recipe-view recipe-id=${($: any) => $.params.id}></recipe-view>`
+    view: html`<recipe-view
+      recipe-id=${($: any) => $.params.id}
+    ></recipe-view>`,
   },
   {
     path: "/app/about",
-    view: html`<about-view></about-view>`
+    view: html`<about-view></about-view>`,
   },
   {
     path: "/app",
-    view: html`<home-view></home-view>`
+    view: html`<home-view></home-view>`,
   },
   {
     path: "/",
-    redirect: "/app"
-  }
+    redirect: "/app",
+  },
 ];
 
 define({
@@ -40,5 +42,5 @@ define({
     constructor() {
       super(routes);
     }
-  }
+  },
 });

@@ -11,7 +11,7 @@ const recipeSchema = new Schema<Recipe>(
     difficulty: String,
     time: String,
   },
-  { collection: "recipes" }
+  { collection: "recipes" },
 );
 
 const RecipeModel = model<Recipe>("Recipe", recipeSchema);
@@ -23,7 +23,9 @@ function index(): Promise<Recipe[]> {
 function get(id: string): Promise<Recipe | undefined> {
   return RecipeModel.find({ id })
     .then((list) => list[0])
-    .catch(() => { throw `${id} Not Found`; });
+    .catch(() => {
+      throw `${id} Not Found`;
+    });
 }
 
 // in src/services/recipe-svc.ts:
@@ -32,26 +34,19 @@ function create(json: Recipe): Promise<Recipe> {
   return t.save();
 }
 
-function update(
-  id: string,
-  recipe: Recipe
-): Promise<Recipe | undefined> {
-  return RecipeModel.findOneAndUpdate(
-    { id: id },
-    recipe,
-    { new: true })
-  .then((updated) => {
-    if (!updated) throw `${id} not updated`;
-    else return updated as unknown as Recipe;
-  });
+function update(id: string, recipe: Recipe): Promise<Recipe | undefined> {
+  return RecipeModel.findOneAndUpdate({ id: id }, recipe, { new: true }).then(
+    (updated) => {
+      if (!updated) throw `${id} not updated`;
+      else return updated as unknown as Recipe;
+    },
+  );
 }
 
 function remove(id: string): Promise<void> {
-  return RecipeModel.findOneAndDelete({ id: id }).then(
-    (deleted) => {
-      if (!deleted) throw `${id} not deleted`;
-    }
-  );
+  return RecipeModel.findOneAndDelete({ id: id }).then((deleted) => {
+    if (!deleted) throw `${id} not deleted`;
+  });
 }
 
 export default { index, get, create, update, remove };

@@ -5,15 +5,15 @@ import reset from "./styles/reset.css.js";
 export class LoginFormElement extends HTMLElement {
   viewModel = createViewModel({
     username: "",
-    password: ""
+    password: "",
   }).with(fromInputs(this), "username", "password");
 
   view = html`<form>
-      <slot></slot>
-      <button type="submit">
-        <slot name="submit-label">Login</slot>
-      </button>
-    </form>`;
+    <slot></slot>
+    <button type="submit">
+      <slot name="submit-label">Login</slot>
+    </button>
+  </form>`;
 
   constructor() {
     super();
@@ -21,7 +21,7 @@ export class LoginFormElement extends HTMLElement {
       .styles(reset.styles)
       .replace(this.viewModel.render(this.view))
       .listen({
-        submit: (ev) => this.submitLogin(ev, this.getAttribute("api") || "#")
+        submit: (ev) => this.submitLogin(ev, this.getAttribute("api") || "#"),
       });
   }
 
@@ -34,8 +34,7 @@ export class LoginFormElement extends HTMLElement {
     console.log("Posting login form:", endpoint, body, event);
     fetch(endpoint, { method, headers, body })
       .then((res) => {
-        if (!res.ok)
-          throw `Form submission failed: Status ${res.status}`;
+        if (!res.ok) throw `Form submission failed: Status ${res.status}`;
         return res.json();
       })
       .then((json) => {
@@ -43,7 +42,7 @@ export class LoginFormElement extends HTMLElement {
         const customEvent = new CustomEvent("auth:message", {
           bubbles: true,
           composed: true,
-          detail: ["auth/signin", { token, redirect: "/" }]
+          detail: ["auth/signin", { token, redirect: "/" }],
         });
         this.dispatchEvent(customEvent);
       });

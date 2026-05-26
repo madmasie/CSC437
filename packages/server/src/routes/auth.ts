@@ -1,10 +1,6 @@
 // src/routes/auth.js
 import dotenv from "dotenv";
-import express, {
-  NextFunction,
-  Request,
-  Response
-} from "express";
+import express, { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import credentials from "../services/credential-svc.ts";
@@ -13,15 +9,13 @@ dotenv.config();
 
 const router = express.Router();
 
-const TOKEN_SECRET: string =
-  process.env.TOKEN_SECRET || "NOT_A_SECRET";
-
+const TOKEN_SECRET: string = process.env.TOKEN_SECRET || "NOT_A_SECRET";
 
 // in src/routes/auth.ts
 export function authenticateUser(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const authHeader = req.headers["authorization"];
   //Getting the 2nd part of the auth header (the token)
@@ -41,9 +35,7 @@ export function authenticateUser(
 router.post("/register", (req: Request, res: Response) => {
   const { username, password } = req.body; // from form
 
-  if ( typeof username !== "string" ||
-    typeof password !== "string"
-  ) {
+  if (typeof username !== "string" || typeof password !== "string") {
     res.status(400).send("Bad request: Invalid input data.");
   } else {
     credentials
@@ -74,9 +66,7 @@ router.post("/login", (req: Request, res: Response) => {
 });
 
 // in src/routes/auth.js
-function generateAccessToken(
-  username: string
-): Promise<String> {
+function generateAccessToken(username: string): Promise<String> {
   return new Promise((resolve, reject) => {
     jwt.sign(
       { username: username },
@@ -85,7 +75,7 @@ function generateAccessToken(
       (error, token) => {
         if (error) reject(error);
         else resolve(token as string);
-      }
+      },
     );
   });
 }

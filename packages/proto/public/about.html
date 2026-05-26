@@ -1,142 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me</title>
-  <link rel="stylesheet" href="/styles/reset.css" />
-  <link rel="stylesheet" href="/styles/tokens.css" />
-  <link rel="stylesheet" href="/styles/page.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-  <style>
-    .about-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-lg);
-      max-width: 600px;
-      margin: 0 auto;
-      padding: var(--space-lg);
-      text-align: center;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me</title>
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .about-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-lg);
+        max-width: 600px;
+        margin: 0 auto;
+        padding: var(--space-lg);
+        text-align: center;
+      }
 
-    .about-container h2 {
-      font-size: 2rem;
-    }
+      .about-container h2 {
+        font-size: 2rem;
+      }
 
-    .about-photo {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--color-accent);
-    }
+      .about-photo {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--color-accent);
+      }
 
-    .about-bio {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--color-text);
-    }
+      .about-bio {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--color-text);
+      }
 
-    .social-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-      width: 100%;
-      max-width: 320px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+      .social-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+        width: 100%;
+        max-width: 320px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-    .social-btn {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: 10px 22px;
-      border: 2px solid var(--color-text);
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-text);
-      text-decoration: none;
-      transition: background 0.15s, color 0.15s;
-    }
+      .social-btn {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 10px 22px;
+        border: 2px solid var(--color-text);
+        border-radius: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--color-text);
+        text-decoration: none;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
 
-    .social-btn:hover {
-      background: var(--color-text);
-      color: var(--color-background-page);
-    }
+      .social-btn:hover {
+        background: var(--color-text);
+        color: var(--color-background-page);
+      }
 
-    .social-btn svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      fill: currentColor;
-    }
+      .social-btn svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        fill: currentColor;
+      }
 
-    .social-btn span {
-      flex: 1;
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <a href="/index.html" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="/icons/cats.svg#icon-plump-cat" /></svg></a>
-    <div class="header-title">
-      <h1>Maddie's Recipe Collection</h1>
-      <p class="header-subtitle">Maddie's homemade recipe collection</p>
-    </div>
-    <nav aria-label="site">
-      <a href="/auth/sign-in.html">Sign In</a>
-      <a href="/auth/sign-up.html">Sign Up</a>
-    </nav>
-  </header>
+      .social-btn span {
+        flex: 1;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/index.html" aria-label="Home"
+        ><svg class="icon" aria-hidden="true">
+          <use href="/icons/cats.svg#icon-plump-cat" /></svg
+      ></a>
+      <div class="header-title">
+        <h1>Maddie's Recipe Collection</h1>
+        <p class="header-subtitle">Maddie's homemade recipe collection</p>
+      </div>
+      <nav aria-label="site">
+        <a href="/auth/sign-in.html">Sign In</a>
+        <a href="/auth/sign-up.html">Sign Up</a>
+      </nav>
+    </header>
 
-  <main>
-    <div class="about-container">
-      <h2>About Me</h2>
+    <main>
+      <div class="about-container">
+        <h2>About Me</h2>
 
-      <img src="/images/maddie.jpg" alt="Photo of Maddie" class="about-photo" />
+        <img
+          src="/images/maddie.jpg"
+          alt="Photo of Maddie"
+          class="about-photo"
+        />
 
-      <p class="about-bio">
-        Fun facts about me coming soon! Check back later to learn more about the person behind these recipes.
-      </p>
+        <p class="about-bio">
+          Fun facts about me coming soon! Check back later to learn more about
+          the person behind these recipes.
+        </p>
 
-      <ul class="social-buttons">
-        <li>
-          <a href="https://www.instagram.com/maddiemasiello" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <!-- Instagram icon -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-            </svg>
-            <span>Instagram</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/matchawithmaddie" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <!-- Instagram icon (matcha) -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-            </svg>
-            <span>Matcha Reviews Instagram</span>
-          </a>
-        </li>
-        <li>
-          <a href="mailto:maddie@example.com" class="social-btn">
-            <!-- Email icon -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2-8 5-8-5h16zm0 12H4V8.236l8 5 8-5V18z"/>
-            </svg>
-            <span>Email Me</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </main>
-</body>
+        <ul class="social-buttons">
+          <li>
+            <a
+              href="https://www.instagram.com/maddiemasiello"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-btn"
+            >
+              <!-- Instagram icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                />
+              </svg>
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/matchawithmaddie"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-btn"
+            >
+              <!-- Instagram icon (matcha) -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                />
+              </svg>
+              <span>Matcha Reviews Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:maddie@example.com" class="social-btn">
+              <!-- Email icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2-8 5-8-5h16zm0 12H4V8.236l8 5 8-5V18z"
+                />
+              </svg>
+              <span>Email Me</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
 </html>

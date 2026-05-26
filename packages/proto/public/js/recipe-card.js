@@ -11,7 +11,9 @@ export class RecipeCardElement extends HTMLElement {
           <h3><slot name="title"></slot></h3>
           <p><slot name="description"></slot></p>
           <ul class="tags">
-            <li class="tag"><span>difficulty:</span> <slot name="difficulty"></slot></li>
+            <li class="tag">
+              <span>difficulty:</span> <slot name="difficulty"></slot>
+            </li>
             <li class="tag"><span>time:</span> <slot name="time"></slot></li>
           </ul>
         </div>
@@ -32,7 +34,8 @@ export class RecipeCardElement extends HTMLElement {
     const root = this.shadowRoot;
     if (!root) return;
     if (name === "href") root.querySelector("a").href = val;
-    if (name === "icon") root.querySelector("use").setAttribute("href", `/icons/cats.svg#${val}`);
+    if (name === "icon")
+      root.querySelector("use").setAttribute("href", `/icons/cats.svg#${val}`);
     if (name === "image") {
       const img = root.querySelector(".thumb");
       const svg = root.querySelector(".icon");
@@ -66,22 +69,61 @@ export class RecipeCardElement extends HTMLElement {
       color: var(--color-card-text);
       transition: background 0.15s;
     }
-    a:hover { background: color-mix(in srgb, var(--color-card-text) 12%, var(--color-card-bg)); }
-    .icon { display: inline; height: 6em; width: 6em; fill: var(--color-card-text); }
-    .thumb { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; display: block; }
-    .body { text-align: center; flex: 1; }
-    h3 { margin: var(--space-sm) 0 var(--space-xs); font-size: 16px; font-family: 'Playfair Display', serif; }
-    p { margin: 0 0 10px; font-size: 13px; opacity: 0.7; font-family: 'Inter', sans-serif; }
-    .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm); list-style: none; padding: 0; }
+    a:hover {
+      background: color-mix(
+        in srgb,
+        var(--color-card-text) 12%,
+        var(--color-card-bg)
+      );
+    }
+    .icon {
+      display: inline;
+      height: 6em;
+      width: 6em;
+      fill: var(--color-card-text);
+    }
+    .thumb {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+    .body {
+      text-align: center;
+      flex: 1;
+    }
+    h3 {
+      margin: var(--space-sm) 0 var(--space-xs);
+      font-size: 16px;
+      font-family: "Playfair Display", serif;
+    }
+    p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      opacity: 0.7;
+      font-family: "Inter", sans-serif;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-sm);
+      list-style: none;
+      padding: 0;
+    }
     .tag {
       display: inline-block;
       padding: 4px 12px;
       border-radius: 999px;
       border: 1px solid var(--color-card-text);
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 13px;
       font-weight: 500;
     }
-    .tag span { opacity: 0.6; margin-right: 4px; }
+    .tag span {
+      opacity: 0.6;
+      margin-right: 4px;
+    }
   `;
 }

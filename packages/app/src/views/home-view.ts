@@ -4,7 +4,9 @@ export class HomeViewElement extends HTMLElement {
   static template = html`<template>
     <nav>
       <ul class="nav-buttons">
-        <li><a href="/app/recipes" class="nav-btn">Browse &amp; Filter Recipes</a></li>
+        <li>
+          <a href="/app/recipes" class="nav-btn">Browse &amp; Filter Recipes</a>
+        </li>
         <li><a href="/app/ingredients" class="nav-btn">My Ingredients</a></li>
         <li><a href="/app/barcode" class="nav-btn">Scan Barcodes</a></li>
         <li><a href="/app/saved" class="nav-btn">Your Saved Recipes</a></li>
@@ -29,7 +31,9 @@ export class HomeViewElement extends HTMLElement {
       padding: var(--space-md) var(--space-lg);
       margin: 0;
     }
-    .nav-buttons li { display: contents; }
+    .nav-buttons li {
+      display: contents;
+    }
     .nav-btn {
       display: inline-block;
       padding: 10px 22px;
@@ -38,20 +42,27 @@ export class HomeViewElement extends HTMLElement {
       background: var(--color-button-bg);
       border: 2px solid var(--color-card-text);
       border-radius: 8px;
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       font-size: 15px;
       font-weight: 500;
       color: var(--color-card-text);
       text-decoration: none;
-      transition: background 0.15s, color 0.15s;
+      transition:
+        background 0.15s,
+        color 0.15s;
       white-space: nowrap;
     }
     .nav-btn:hover {
       background: var(--color-card-text);
       color: var(--color-button-bg);
     }
-    main { padding: var(--space-lg); }
-    h2 { color: var(--color-coral); margin-bottom: var(--space-sm); }
+    main {
+      padding: var(--space-lg);
+    }
+    h2 {
+      color: var(--color-coral);
+      margin-bottom: var(--space-sm);
+    }
   `;
 
   constructor() {
@@ -64,11 +75,13 @@ export class HomeViewElement extends HTMLElement {
       const a = (e.target as Element).closest("a");
       if (!a) return;
       e.preventDefault();
-      this.dispatchEvent(new CustomEvent("history:message", {
-        bubbles: true,
-        composed: true,
-        detail: ["history/navigate", { href: a.getAttribute("href") }]
-      }));
+      this.dispatchEvent(
+        new CustomEvent("history:message", {
+          bubbles: true,
+          composed: true,
+          detail: ["history/navigate", { href: a.getAttribute("href") }],
+        }),
+      );
     });
   }
 }

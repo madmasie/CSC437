@@ -1,7 +1,7 @@
 body {
   background-color: var(--color-background-page);
   color: var(--color-text);
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: 400;
   font-size: 18px;
   font-style: normal;
@@ -10,7 +10,7 @@ body {
 header {
   background-color: var(--color-background-header);
   color: var(--color-text-header);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-style: normal;
   display: flex;
   align-items: center;
@@ -18,10 +18,9 @@ header {
   padding: var(--space-md) var(--space-lg);
 }
 
-
-
-h2 { margin-bottom: var(--space-sm); }
-
+h2 {
+  margin-bottom: var(--space-sm);
+}
 
 header svg.icon {
   flex-shrink: 0;
@@ -66,10 +65,12 @@ header nav a {
   color: var(--color-danger);
   background: var(--color-background-page);
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 header nav a:hover {
@@ -94,8 +95,6 @@ nav ul {
   margin: 0;
 }
 
-
-
 main {
   padding: var(--space-lg);
 }
@@ -112,10 +111,10 @@ a {
   color: var(--color-link);
 }
 
-svg.icon{
+svg.icon {
   display: inline;
   height: 10em;
-  width: 10em; 
+  width: 10em;
   vertical-align: top;
   fill: black;
 }
@@ -148,12 +147,14 @@ header a:has(svg.icon) {
   background: var(--color-button-bg);
   border: 2px solid var(--color-card-text);
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: var(--color-card-text);
   text-decoration: none;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
   white-space: nowrap;
 }
 
@@ -165,10 +166,6 @@ header a:has(svg.icon) {
   background: var(--color-card-text);
   color: var(--color-button-bg);
 }
-
-
-
-
 
 header nav a[aria-current="page"] {
   opacity: 0.4;
@@ -229,6 +226,3 @@ form.auth p {
   max-width: 1100px;
   margin: 0 auto;
 }
-
-
-

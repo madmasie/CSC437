@@ -18,8 +18,10 @@ interface RecipeViewModel {
 }
 
 export class RecipeViewElement extends HTMLElement {
-  viewModel = createViewModel<RecipeViewModel>({})
-    .with(fromAuth(this), "token");
+  viewModel = createViewModel<RecipeViewModel>({}).with(
+    fromAuth(this),
+    "token",
+  );
 
   static observedAttributes = ["recipe-id"];
 
@@ -45,16 +47,28 @@ export class RecipeViewElement extends HTMLElement {
       <div class="recipe-main">
         <section>
           <h2>Ingredients</h2>
-          <ul>${($: any) => ($.recipe?.ingredients || []).map((i: string) => html`<li>${i}</li>`)}</ul>
+          <ul>
+            ${($: any) =>
+              ($.recipe?.ingredients || []).map(
+                (i: string) => html`<li>${i}</li>`,
+              )}
+          </ul>
         </section>
         <section>
           <h2>Instructions</h2>
-          <ol>${($: any) => ($.recipe?.instructions || []).map((s: string) => html`<li>${s}</li>`)}</ol>
+          <ol>
+            ${($: any) =>
+              ($.recipe?.instructions || []).map(
+                (s: string) => html`<li>${s}</li>`,
+              )}
+          </ol>
         </section>
       </div>
       <aside class="recipe-sidebar">
         <ul class="tags">
-          <li class="tag"><span>difficulty:</span> ${($: any) => $.recipe?.difficulty}</li>
+          <li class="tag">
+            <span>difficulty:</span> ${($: any) => $.recipe?.difficulty}
+          </li>
           <li class="tag"><span>time:</span> ${($: any) => $.recipe?.time}</li>
         </ul>
       </aside>
@@ -68,9 +82,20 @@ export class RecipeViewElement extends HTMLElement {
       gap: var(--space-lg);
       padding: var(--space-lg);
     }
-    h2 { color: var(--color-coral); margin-bottom: var(--space-sm); }
-    .tags { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-sm); }
-    .tag span { font-weight: 600; }
+    h2 {
+      color: var(--color-coral);
+      margin-bottom: var(--space-sm);
+    }
+    .tags {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .tag span {
+      font-weight: 600;
+    }
   `;
 
   constructor() {
