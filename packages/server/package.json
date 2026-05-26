@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "type": "module",
+  "exports": {
+    "./models": {
+      "import": "./src/models/index.ts"
+    }
+  },
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",

@@ -1,6 +1,9 @@
 import { html, css, shadow } from "@unbndl/html";
 import { createViewModel } from "@unbndl/view";
 import { fromAuth } from "@unbndl/auth";
+import { fromStore, Store } from "@unbndl/store";
+import { Recipe } from "server/models";
+import { Model } from "../model.ts";
 
 function renderCard({
   href,
@@ -21,73 +24,53 @@ function renderCard({
   `;
 }
 
-export class RecipeListElement extends HTMLElement {
-  viewModel = createViewModel({ authenticated: false, token: undefined }).with(
-    fromAuth(this),
-    "authenticated",
-    "token",
-  );
+interface RecipeListViewModel {
+  token?: string;
+  recipes?: Recipe[];
+}
 
-  get authorization(): Record<string, string> {
-    const $ = this.viewModel.toObject();
-    return $.authenticated ? { Authorization: `Bearer ${$.token}` } : {};
-  }
+export class RecipeListElement extends HTMLElement {
+  viewModel = createViewModel<RecipeListViewModel>({})
+    .with(fromAuth(this), "token")
+    .with(fromStore<Model>(this), "recipes");
+
+  view = html`
+    <div class="carousel-wrapper">
+      <button class="arrow arrow-left" aria-label="Scroll left">
+        &#8249;
+      </button>
+      <div class="carousel">
+        ${($: any) => ($.recipes || []).map(renderCard)}
+      </div>
+      <button class="arrow arrow-right" aria-label="Scroll right">
+        &#8250;
+      </button>
+    </div>
+  `;
 
   constructor() {
     super();
-    shadow(this).styles(RecipeListElement.styles);
-  }
-
-  connectedCallback() {
-    const src = this.getAttribute("src");
-    if (src) this.load(src);
-  }
-
-  static observedAttributes = ["src"];
-
-  attributeChangedCallback(name: string, _: string, newValue: string) {
-    if (name === "src") this.load(newValue);
-  }
-
-  load(src: string) {
-    fetch(src, { headers: this.authorization })
-      .then((r) => {
-        if (r.status !== 200) throw `HTTP ${r.status}`;
-        return r.json();
+    shadow(this)
+      .styles(RecipeListElement.styles)
+      .replace(this.viewModel.render(this.view))
+      .delegate(".arrow-left", {
+        click: () => this.scrollCarousel(-280),
       })
-      .then((data) => {
-        shadow(this).replace(RecipeListElement.render(data));
-        const root = this.shadowRoot!;
-        root
-          .querySelector(".arrow-left")!
-          .addEventListener("click", () =>
-            root
-              .querySelector(".carousel")!
-              .scrollBy({ left: -280, behavior: "smooth" }),
-          );
-        root
-          .querySelector(".arrow-right")!
-          .addEventListener("click", () =>
-            root
-              .querySelector(".carousel")!
-              .scrollBy({ left: 280, behavior: "smooth" }),
-          );
-      })
-      .catch(console.error);
+      .delegate(".arrow-right", {
+        click: () => this.scrollCarousel(280),
+      });
+
+    this.viewModel.createEffect(($: any) => {
+      if ($.token && !$.recipes) {
+        Store.dispatch(this, ["recipes/request"]);
+      }
+    });
   }
 
-  static render(data: any[]) {
-    return html`
-      <div class="carousel-wrapper">
-        <button class="arrow arrow-left" aria-label="Scroll left">
-          &#8249;
-        </button>
-        <div class="carousel">${(data || []).map(renderCard)}</div>
-        <button class="arrow arrow-right" aria-label="Scroll right">
-          &#8250;
-        </button>
-      </div>
-    `;
+  scrollCarousel(dx: number) {
+    this.shadowRoot!
+      .querySelector(".carousel")!
+      .scrollBy({ left: dx, behavior: "smooth" });
   }
 
   static styles = css`

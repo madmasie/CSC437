@@ -3,7 +3,7 @@ import { css, html, shadow } from "@unbndl/html";
 export class RecipesViewElement extends HTMLElement {
   static template = html`<template>
     <h2>Find a Recipe</h2>
-    <p class="subtitle">Search and filter by diet, difficulty, and more</p>
+    <p class="subtitle">Browse all recipes in the collection</p>
     <section>
       <h3>Search</h3>
       <form>
@@ -38,23 +38,12 @@ export class RecipesViewElement extends HTMLElement {
     </section>
     <section>
       <h3>
-        Results:
+        All Recipes
         <svg class="icon" aria-hidden="true">
           <use href="/icons/cats.svg#icon-thinking-cat" />
         </svg>
       </h3>
-      <p>
-        Here are your sugguested recipes based on your filter selections! Click
-        on any recipe to view details and save it to your collection.
-      </p>
-      <ul>
-        <li>
-          <a href="/app/recipe/maddies-garlic-parm-pasta"
-            >Maddie's Garlic Parm Pasta</a
-          >
-        </li>
-        <li><a href="/app/recipe/focaccia-bread">Focaccia Bread</a></li>
-      </ul>
+      <recipe-list></recipe-list>
     </section>
   </template>`;
 
@@ -100,9 +89,6 @@ export class RecipesViewElement extends HTMLElement {
     .recipe-grid {
       list-style: disc;
       padding-left: var(--space-lg);
-    }
-    ul a {
-      color: var(--color-coral);
     }
   `;
 

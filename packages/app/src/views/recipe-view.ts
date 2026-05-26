@@ -1,46 +1,27 @@
 import { css, html, shadow } from "@unbndl/html";
-import { createViewModel } from "@unbndl/view";
+import { createViewModel, fromAttributes } from "@unbndl/view";
 import { fromAuth } from "@unbndl/auth";
+import { fromStore, Store } from "@unbndl/store";
+import { Recipe } from "server/models";
+import { Model } from "../model.ts";
 
-interface Recipe {
-  id?: string;
-  title?: string;
-  description?: string;
-  ingredients?: string[];
-  instructions?: string[];
-  difficulty?: string;
-  time?: string;
+interface RecipeViewAttributes {
+  "recipe-id"?: string;
 }
 
 interface RecipeViewModel {
-  token?: string;
+  recipeid?: string;
   recipe?: Recipe;
+  token?: string;
 }
 
 export class RecipeViewElement extends HTMLElement {
-  viewModel = createViewModel<RecipeViewModel>({}).with(
-    fromAuth(this),
-    "token",
-  );
-
-  static observedAttributes = ["recipe-id"];
-
-  attributeChangedCallback(name: string, _: string, newValue: string) {
-    if (name === "recipe-id" && newValue) {
-      this.fetchRecipe(newValue);
-    }
-  }
-
-  fetchRecipe(id: string) {
-    const token = this.viewModel.get("token");
-    const headers: Record<string, string> = token
-      ? { Authorization: `Bearer ${token}` }
-      : {};
-    fetch(`/api/recipes/${id}`, { headers })
-      .then((r) => r.json())
-      .then((recipe: Recipe) => this.viewModel.set("recipe", recipe))
-      .catch(console.error);
-  }
+  viewModel = createViewModel<RecipeViewModel>({})
+    .withRenamed(fromAttributes<RecipeViewAttributes>(this), {
+      recipeid: "recipe-id",
+    })
+    .with(fromStore<Model>(this), "recipe")
+    .with(fromAuth(this), "token");
 
   view = html`
     <main class="recipe-layout">
@@ -103,5 +84,11 @@ export class RecipeViewElement extends HTMLElement {
     shadow(this)
       .styles(RecipeViewElement.styles)
       .replace(this.viewModel.render(this.view));
+
+    this.viewModel.createEffect(($: any) => {
+      if ($.recipeid && $.token) {
+        Store.dispatch(this, ["recipe/request", { id: $.recipeid }]);
+      }
+    });
   }
 }

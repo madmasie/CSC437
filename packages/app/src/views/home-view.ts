@@ -5,7 +5,7 @@ export class HomeViewElement extends HTMLElement {
     <main>
       <section>
         <h2>Featured Recipes</h2>
-        <recipe-list src="/api/recipes"></recipe-list>
+        <recipe-list></recipe-list>
       </section>
     </main>
   </template>`;

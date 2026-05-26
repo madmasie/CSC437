@@ -6,4 +6,6 @@ export interface Recipe {
   description: string;
   difficulty: "easy" | "medium" | "hard";
   time: string;
+  ingredients?: string[];
+  instructions?: string[];
 }

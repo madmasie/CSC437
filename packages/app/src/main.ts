@@ -1,5 +1,6 @@
 import { define, html } from "@unbndl/html";
 import { Auth } from "@unbndl/auth";
+import { Store } from "@unbndl/store";
 import { BrowserHistory, Switch } from "@unbndl/switch";
 import { HeaderElement } from "./components/app-header.ts";
 import { RecipeCardElement } from "./components/recipe-card.ts";
@@ -12,6 +13,9 @@ import { IngredientsViewElement } from "./views/ingredients-view.ts";
 import { BarcodeViewElement } from "./views/barcode-view.ts";
 import { SavedViewElement } from "./views/saved-view.ts";
 import { HistoryViewElement } from "./views/history-view.ts";
+import { Model, init } from "./model.ts";
+import { Msg } from "./messages.ts";
+import update, { Cmd } from "./update.ts";
 
 const routes = [
   {
@@ -34,6 +38,11 @@ const routes = [
 define({
   "auth-provider": Auth.Provider,
   "history-provider": BrowserHistory.Provider,
+  "store-provider": class AppStore extends Store.Provider<Model, Msg, Cmd> {
+    constructor() {
+      super(update, init);
+    }
+  },
   "app-header": HeaderElement,
   "recipe-card": RecipeCardElement,
   "recipe-list": RecipeListElement,

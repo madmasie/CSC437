@@ -10,6 +10,8 @@ const recipeSchema = new Schema<Recipe>(
     description: String,
     difficulty: String,
     time: String,
+    ingredients: [String],
+    instructions: [String],
   },
   { collection: "recipes" },
 );
