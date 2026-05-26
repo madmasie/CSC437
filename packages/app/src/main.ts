@@ -13,11 +13,19 @@ import { IngredientsViewElement } from "./views/ingredients-view.ts";
 import { BarcodeViewElement } from "./views/barcode-view.ts";
 import { SavedViewElement } from "./views/saved-view.ts";
 import { HistoryViewElement } from "./views/history-view.ts";
+import { EditRecipeViewElement } from "./views/edit-recipe-view.ts";
+import { NewRecipeViewElement } from "./views/new-recipe-view.ts";
+import { RecipeFormElement } from "./components/recipe-form.ts";
 import { Model, init } from "./model.ts";
 import { Msg } from "./messages.ts";
 import update, { Cmd } from "./update.ts";
 
 const routes = [
+  { path: "/app/recipe/new", view: html`<new-recipe-view></new-recipe-view>` },
+  {
+    path: "/app/recipe/:id/edit",
+    view: html`<edit-recipe-view recipe-id=${($: any) => $.params.id}></edit-recipe-view>`,
+  },
   {
     path: "/app/recipe/:id",
     view: html`<recipe-view recipe-id=${($: any) => $.params.id}></recipe-view>`,
@@ -54,6 +62,9 @@ define({
   "barcode-view": BarcodeViewElement,
   "saved-view": SavedViewElement,
   "history-view": HistoryViewElement,
+  "edit-recipe-view": EditRecipeViewElement,
+  "new-recipe-view": NewRecipeViewElement,
+  "recipe-form": RecipeFormElement,
   "router-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes as any);

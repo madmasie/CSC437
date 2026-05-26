@@ -6,6 +6,9 @@ export class RecipesViewElement extends HTMLElement {
       <p class="eyebrow">Browse</p>
       <h2>Find a Recipe</h2>
       <p class="subtitle">Search and filter through the whole collection.</p>
+      <p class="actions">
+        <a class="new-btn" href="/app/recipe/new">+ New Recipe</a>
+      </p>
     </header>
 
     <section class="section">
@@ -76,6 +79,24 @@ export class RecipesViewElement extends HTMLElement {
       margin: 0;
       color: var(--ink-muted);
       font-family: var(--font-sans);
+    }
+
+    .actions {
+      margin-top: var(--space-sm);
+    }
+    .new-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--accent);
+      color: var(--ink-on-accent);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .new-btn:hover {
+      background: color-mix(in srgb, var(--accent) 85%, black);
     }
 
     /* ---------- Sections ---------- */

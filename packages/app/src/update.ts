@@ -2,11 +2,12 @@ import { Auth } from "@unbndl/auth";
 // Auth.Model is the type expected by Store.Provider's update function
 import { Recipe } from "server/models";
 import { Model } from "./model.ts";
-import { Msg } from "./messages.ts";
+import { Msg, MsgCallbacks } from "./messages.ts";
 
 export type Cmd =
   | ["recipe/load", { recipe: Recipe }]
-  | ["recipes/load", { recipes: Recipe[] }];
+  | ["recipes/load", { recipes: Recipe[] }]
+  | ["recipes/invalidate", {}];
 
 export default function update(
   model: Readonly<Model>,
@@ -39,8 +40,34 @@ export default function update(
       ];
     case "recipes/load":
       return { ...model, recipes: payload.recipes };
-    default:
-      throw new Error(`Unhandled message "${type}"`);
+    case "recipes/invalidate":
+      // Drop cached list so the next request refetches.
+      return { ...model, recipes: undefined };
+    case "recipe/save": {
+      const { id, recipe, onSuccess, onFailure } = payload;
+      return [
+        model,
+        saveRecipe(id, recipe, user, { onSuccess, onFailure })
+      ];
+    }
+    case "recipe/create": {
+      const { recipe, onSuccess, onFailure } = payload;
+      return [
+        model,
+        createRecipe(recipe, user, { onSuccess, onFailure })
+      ];
+    }
+    case "recipe/delete": {
+      const { id, onSuccess, onFailure } = payload;
+      return [
+        model,
+        deleteRecipe(id, user, { onSuccess, onFailure })
+      ];
+    }
+    default: {
+      const unhandled: never = type as never;
+      throw new Error(`Unhandled message "${unhandled}"`);
+    }
   }
   return model;
 }
@@ -49,7 +76,7 @@ function fetchRecipe(id: string, user: Auth.Model): Promise<Cmd> {
   return fetch(`/api/recipes/${id}`, { headers: Auth.headers(user) })
     .then((r) => {
       if (r.status === 200) return r.json();
-      throw `HTTP ${r.status}`;
+      throw new Error(`HTTP ${r.status}`);
     })
     .then((recipe: Recipe) => ["recipe/load", { recipe }] as Cmd);
 }
@@ -58,7 +85,78 @@ function fetchRecipes(user: Auth.Model): Promise<Cmd> {
   return fetch("/api/recipes", { headers: Auth.headers(user) })
     .then((r) => {
       if (r.status === 200) return r.json();
-      throw `HTTP ${r.status}`;
+      throw new Error(`HTTP ${r.status}`);
     })
     .then((recipes: Recipe[]) => ["recipes/load", { recipes }] as Cmd);
+}
+
+function saveRecipe(
+  id: string,
+  recipe: Recipe,
+  user: Auth.Model,
+  callbacks: MsgCallbacks
+): Promise<Cmd> {
+  return fetch(`/api/recipes/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...Auth.headers(user) },
+    body: JSON.stringify(recipe),
+  })
+    .then((r) => {
+      if (r.status === 200) return r.json();
+      throw new Error(`Failed to save recipe ${id} (HTTP ${r.status})`);
+    })
+    .then((updated: Recipe) => {
+      callbacks.onSuccess?.();
+      return ["recipe/load", { recipe: updated }] as Cmd;
+    })
+    .catch((err: Error) => {
+      callbacks.onFailure?.(err);
+      throw err;
+    });
+}
+
+function createRecipe(
+  recipe: Recipe,
+  user: Auth.Model,
+  callbacks: MsgCallbacks
+): Promise<Cmd> {
+  return fetch("/api/recipes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...Auth.headers(user) },
+    body: JSON.stringify(recipe),
+  })
+    .then((r) => {
+      if (r.status === 201) return r.json();
+      throw new Error(`Failed to create recipe (HTTP ${r.status})`);
+    })
+    .then((_created: Recipe) => {
+      callbacks.onSuccess?.();
+      return ["recipes/invalidate", {}] as Cmd;
+    })
+    .catch((err: Error) => {
+      callbacks.onFailure?.(err);
+      throw err;
+    });
+}
+
+function deleteRecipe(
+  id: string,
+  user: Auth.Model,
+  callbacks: MsgCallbacks
+): Promise<Cmd> {
+  return fetch(`/api/recipes/${id}`, {
+    method: "DELETE",
+    headers: Auth.headers(user),
+  })
+    .then((r) => {
+      if (r.status !== 204) {
+        throw new Error(`Failed to delete recipe ${id} (HTTP ${r.status})`);
+      }
+      callbacks.onSuccess?.();
+      return ["recipes/invalidate", {}] as Cmd;
+    })
+    .catch((err: Error) => {
+      callbacks.onFailure?.(err);
+      throw err;
+    });
 }

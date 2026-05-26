@@ -39,6 +39,9 @@ export class RecipeViewElement extends HTMLElement {
             ${($: any) => $.recipe?.time || "—"}
           </li>
         </ul>
+        <p class="actions">
+          <a class="action" href=${($: any) => `/app/recipe/${$.recipeid}/edit`}>Edit</a>
+        </p>
       </header>
 
       <div class="recipe-body">
@@ -128,6 +131,23 @@ export class RecipeViewElement extends HTMLElement {
       text-transform: uppercase;
       letter-spacing: 0.5px;
       font-size: 10px;
+    }
+
+    .actions {
+      margin-top: var(--space-md);
+    }
+    .action {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .action:hover {
+      background: var(--surface-sunken);
     }
 
     /* ---------- Body grid ---------- */
