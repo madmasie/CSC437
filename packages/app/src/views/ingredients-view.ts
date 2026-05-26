@@ -1,33 +1,27 @@
-import { css, html, shadow } from "@unbndl/html";
+import { html, shadow } from "@unbndl/html";
+import { stubViewStyles } from "./_shared.ts";
 
 export class IngredientsViewElement extends HTMLElement {
   static template = html`<template>
-    <h2>My Ingredients</h2>
-    <p class="subtitle">Track what's in your kitchen</p>
-    <svg class="icon" aria-hidden="true">
-      <use href="/icons/cats.svg#icon-eepy-cat" />
-    </svg>
-    <p>stuff</p>
+    <header class="view-header">
+      <p class="eyebrow">Pantry</p>
+      <h2>My Ingredients</h2>
+      <p class="subtitle">Track what's in your kitchen.</p>
+    </header>
+    <div class="empty-state">
+      <svg class="empty-icon" aria-hidden="true">
+        <use href="/icons/cats.svg#icon-eepy-cat" />
+      </svg>
+      <p class="empty-title">Your pantry is empty</p>
+      <p class="empty-body">
+        Add ingredients to get personalized recipe suggestions based on what you
+        already have.
+      </p>
+    </div>
   </template>`;
-
-  static styles = css`
-    :host {
-      display: block;
-      padding: var(--space-lg);
-    }
-    h2 {
-      color: var(--color-coral);
-    }
-    .subtitle {
-      color: var(--color-text-muted, var(--color-text));
-      margin-bottom: var(--space-md);
-    }
-  `;
 
   constructor() {
     super();
-    shadow(this)
-      .template(IngredientsViewElement.template)
-      .styles(IngredientsViewElement.styles);
+    shadow(this).template(IngredientsViewElement.template).styles(stubViewStyles);
   }
 }

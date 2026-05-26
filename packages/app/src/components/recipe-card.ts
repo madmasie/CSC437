@@ -4,16 +4,22 @@ export class RecipeCardElement extends HTMLElement {
   static template = html`
     <template>
       <a part="link">
-        <img class="thumb" alt="" />
-        <svg class="icon" aria-hidden="true"><use /></svg>
+        <div class="media">
+          <img class="thumb" alt="" />
+          <svg class="icon" aria-hidden="true"><use /></svg>
+        </div>
         <div class="body">
           <h3><slot name="title"></slot></h3>
-          <p><slot name="description"></slot></p>
+          <p class="description"><slot name="description"></slot></p>
           <ul class="tags">
             <li class="tag">
-              <span>difficulty:</span> <slot name="difficulty"></slot>
+              <span class="tag-label">difficulty</span>
+              <slot name="difficulty"></slot>
             </li>
-            <li class="tag"><span>time:</span> <slot name="time"></slot></li>
+            <li class="tag">
+              <span class="tag-label">time</span>
+              <slot name="time"></slot>
+            </li>
           </ul>
         </div>
       </a>
@@ -53,77 +59,113 @@ export class RecipeCardElement extends HTMLElement {
   static styles = css`
     :host {
       display: flex;
-      flex: 0 0 260px;
+      flex: 0 0 280px;
       scroll-snap-align: start;
     }
+
     a {
       flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      background: var(--color-card-bg);
-      border: 1px solid var(--color-card-text);
-      border-radius: 10px;
-      padding: var(--space-md);
+      background: var(--surface-card, var(--color-card-bg));
+      border: 1px solid var(--border, var(--color-card-text));
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       text-decoration: none;
-      color: var(--color-card-text);
-      transition: background 0.15s;
+      color: var(--ink, var(--color-card-text));
+      box-shadow: var(--shadow-sm);
+      transition:
+        transform var(--duration) var(--ease),
+        box-shadow var(--duration) var(--ease),
+        border-color var(--duration) var(--ease);
     }
     a:hover {
-      background: color-mix(
-        in srgb,
-        var(--color-card-text) 12%,
-        var(--color-card-bg)
-      );
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: color-mix(in srgb, var(--accent) 40%, transparent);
     }
-    .icon {
-      display: inline;
-      height: 6em;
-      width: 6em;
-      fill: var(--color-card-text);
+
+    /* ---------- Media ---------- */
+    .media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: var(--surface-sunken, var(--color-cream-deep, #efe3d3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     .thumb {
       width: 100%;
-      height: 160px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 6px;
-      display: block;
+      transition: transform var(--duration) var(--ease);
     }
+    a:hover .thumb {
+      transform: scale(1.04);
+    }
+    .icon {
+      height: 6em;
+      width: 6em;
+      fill: color-mix(in srgb, var(--ink) 55%, transparent);
+    }
+
+    /* ---------- Body ---------- */
     .body {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md);
       flex: 1;
     }
     h3 {
-      margin: var(--space-sm) 0 var(--space-xs);
-      font-size: 16px;
-      font-family: "Playfair Display", serif;
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: var(--text-md);
+      font-weight: 700;
+      color: var(--ink-strong, var(--color-card-text));
+      line-height: var(--leading-snug);
     }
-    p {
-      margin: 0 0 10px;
-      font-size: 13px;
-      opacity: 0.7;
-      font-family: "Inter", sans-serif;
+    .description {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--ink-muted);
+      line-height: var(--leading-snug);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
+
+    /* ---------- Tags ---------- */
     .tags {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--space-sm);
-      list-style: none;
+      gap: var(--space-xs);
+      margin: var(--space-xs) 0 0;
       padding: 0;
+      list-style: none;
     }
     .tag {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--color-card-text);
-      font-family: "Inter", sans-serif;
-      font-size: 13px;
-      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-sunken);
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.2px;
     }
-    .tag span {
-      opacity: 0.6;
-      margin-right: 4px;
+    .tag-label {
+      color: var(--ink-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 10px;
     }
   `;
 }

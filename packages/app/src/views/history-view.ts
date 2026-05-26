@@ -1,33 +1,26 @@
-import { css, html, shadow } from "@unbndl/html";
+import { html, shadow } from "@unbndl/html";
+import { stubViewStyles } from "./_shared.ts";
 
 export class HistoryViewElement extends HTMLElement {
   static template = html`<template>
-    <h2>History</h2>
-    <p class="subtitle">Recipes you've recently viewed</p>
-    <svg class="icon" aria-hidden="true">
-      <use href="/icons/cats.svg#icon-laptop-cat" />
-    </svg>
-    <p>stuff</p>
+    <header class="view-header">
+      <p class="eyebrow">Activity</p>
+      <h2>History</h2>
+      <p class="subtitle">Recipes you've recently viewed.</p>
+    </header>
+    <div class="empty-state">
+      <svg class="empty-icon" aria-hidden="true">
+        <use href="/icons/cats.svg#icon-laptop-cat" />
+      </svg>
+      <p class="empty-title">Nothing here yet</p>
+      <p class="empty-body">
+        Recipes will start appearing here once you've taken a look around.
+      </p>
+    </div>
   </template>`;
-
-  static styles = css`
-    :host {
-      display: block;
-      padding: var(--space-lg);
-    }
-    h2 {
-      color: var(--color-coral);
-    }
-    .subtitle {
-      color: var(--color-text-muted, var(--color-text));
-      margin-bottom: var(--space-md);
-    }
-  `;
 
   constructor() {
     super();
-    shadow(this)
-      .template(HistoryViewElement.template)
-      .styles(HistoryViewElement.styles);
+    shadow(this).template(HistoryViewElement.template).styles(stubViewStyles);
   }
 }

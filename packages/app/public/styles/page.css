@@ -1,228 +1,228 @@
+/* ------------------------------------------------------------------ */
+/*  Global page styles                                                 */
+/*                                                                     */
+/*  Most component styling lives in shadow DOM via @unbndl/html.       */
+/*  This file covers:                                                  */
+/*    - body / typography                                              */
+/*    - light DOM layout primitives ( .page, .section, .stack )        */
+/*    - shared form / button / card styles for the auth pages          */
+/* ------------------------------------------------------------------ */
+
+/* ---------- Body & typography ---------- */
+
 body {
-  background-color: var(--color-background-page);
-  color: var(--color-text);
-  font-family: "Playfair Display", serif;
+  background-color: var(--surface-page);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
   font-weight: 400;
-  font-size: 18px;
-  font-style: normal;
+  line-height: var(--leading-body);
+  background-image:
+    radial-gradient(
+      circle at 0% 0%,
+      color-mix(in srgb, var(--accent-warm) 8%, transparent) 0,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      color-mix(in srgb, var(--color-teal-soft) 12%, transparent) 0,
+      transparent 45%
+    );
+  background-attachment: fixed;
 }
 
-header {
-  background-color: var(--color-background-header);
-  color: var(--color-text-header);
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-  padding: var(--space-md) var(--space-lg);
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  color: var(--ink-strong);
+  line-height: var(--leading-tight);
 }
 
 h2 {
+  font-size: var(--text-xl);
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.2px;
+}
+
+h3 {
+  font-size: var(--text-lg);
   margin-bottom: var(--space-sm);
 }
 
-header svg.icon {
-  flex-shrink: 0;
-  height: 3em;
-  width: 3em;
-}
-
-header .header-title {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-header h1 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-header .header-subtitle {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 400;
-  opacity: 0.8;
-}
-
-header nav {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-header nav a {
-  padding: 5px 14px;
-  border: 2px solid var(--color-danger);
-  border-radius: 999px;
-  color: var(--color-danger);
-  background: var(--color-background-page);
+a {
+  color: var(--accent-link);
   text-decoration: none;
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  transition:
-    background 0.15s,
-    color 0.15s;
+  transition: color var(--duration-fast) var(--ease);
 }
 
-header nav a:hover {
-  background: var(--color-danger);
-  color: var(--color-background-page);
+a:hover {
+  color: color-mix(in srgb, var(--accent-link) 80%, var(--ink));
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.recipe-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  list-style: none;
-  padding: 0;
-}
+/* ---------- Layout primitives ---------- */
 
-nav ul {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-md);
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.page {
+  display: block;
+  min-height: 100vh;
 }
 
 main {
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
+  max-width: var(--content-max);
+  margin: 0 auto;
 }
 
-header a {
-  color: var(--color-red);
+.stack > * + * {
+  margin-top: var(--space-md);
 }
 
-h2 {
-  color: var(--color-coral);
-}
-
-a {
-  color: var(--color-link);
-}
-
-svg.icon {
-  display: inline;
-  height: 10em;
-  width: 10em;
-  vertical-align: top;
-  fill: black;
-}
-
-header svg.icon {
-  height: 3em;
-  width: 3em;
-}
-
-header a:has(svg.icon) {
+/* Center auth-style narrow pages.  login.html / sign-up.html use
+   <main class="page"> so we provide a centered narrow layout there. */
+main.page {
+  max-width: var(--content-narrow);
+  padding: var(--space-2xl) var(--space-lg);
   display: flex;
-  line-height: 0;
+  flex-direction: column;
+  gap: var(--space-lg);
+  align-items: stretch;
+  text-align: center;
 }
 
-.nav-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-sm);
-  list-style: none;
-  padding: var(--space-md) var(--space-lg);
+main.page h2 {
   margin: 0;
 }
 
-.nav-btn {
-  display: inline-block;
-  padding: 10px 22px;
-  flex: 1 1 0;
+main.page > p {
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+}
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
   text-align: center;
-  background: var(--color-button-bg);
-  border: 2px solid var(--color-card-text);
-  border-radius: 8px;
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
+}
+
+.auth-header h2 {
+  margin: 0;
+}
+
+.auth-header p {
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  text-align: left;
+}
+
+/* ---------- Forms (auth pages, generic) ---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-card-text);
-  text-decoration: none;
-  transition:
-    background 0.15s,
-    color 0.15s;
-  white-space: nowrap;
+  color: var(--ink-muted);
+  text-align: left;
 }
 
-.nav-buttons li {
-  display: contents;
-}
-
-.nav-btn:hover {
-  background: var(--color-card-text);
-  color: var(--color-button-bg);
-}
-
-header nav a[aria-current="page"] {
-  opacity: 0.4;
-  pointer-events: none;
-  text-decoration: none;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--color-coral);
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-}
-
-.btn:hover {
-  opacity: 0.85;
+label > span {
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-size: var(--text-xs);
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
-  padding: 8px 12px;
-  border: 1px solid var(--color-text);
-  border-radius: 4px;
-  font-size: 16px;
+input[type="password"],
+input:not([type]) {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--surface-card-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--ink);
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
 }
 
-form {
-  display: flex;
-  gap: var(--space-sm);
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* ---------- Buttons ---------- */
+
+button,
+.btn {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--ink-on-accent);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease),
+    transform var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease);
 }
 
-form.auth {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-md);
-  align-items: center;
-  max-width: 360px;
+button:hover,
+.btn:hover {
+  background: color-mix(in srgb, var(--accent) 85%, black);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink-on-accent);
 }
 
-form.auth div {
-  display: contents;
+button:active,
+.btn:active {
+  transform: translateY(1px);
 }
 
-form.auth button,
-form.auth p {
-  grid-column: 1 / -1;
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
 }
 
-.page-grid {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: var(--space-lg);
-  padding: var(--space-lg);
-  max-width: 1100px;
-  margin: 0 auto;
+.btn-ghost:hover {
+  background: var(--surface-sunken);
+  color: var(--ink-strong);
 }

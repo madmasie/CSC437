@@ -1,37 +1,140 @@
+/* ------------------------------------------------------------------ */
+/*  Design tokens                                                      */
+/*                                                                     */
+/*  Warm cream / deep teal / coral identity.  Tokens are layered:      */
+/*    1. Raw palette        (--color-*)                                */
+/*    2. Semantic roles     (--surface-*, --ink-*, --accent-*)         */
+/*    3. Spacing / type / radius / shadow / motion scales              */
+/* ------------------------------------------------------------------ */
+
 :root {
-  --color-teal: #2f5050;
-  --color-orange: #f4a462;
-  --color-coral: #e76e50;
-  --color-cream: #f8f0e8;
-  --color-red: #d10000;
-  --color-light-teal: #6fb0aa;
+  /* ---- Raw palette ---- */
+  --color-teal:          #2f5050;
+  --color-teal-deep:     #1f3a3a;
+  --color-teal-soft:     #6fb0aa;
+  --color-cream:         #f8f0e8;
+  --color-cream-warm:    #fbf5ee;
+  --color-cream-deep:    #efe3d3;
+  --color-coral:         #e76e50;
+  --color-coral-soft:    #f1a290;
+  --color-orange:        #f4a462;
+  --color-butter:        #f5d28a;
+  --color-red:           #d10000;
+  --color-ink:           #2a2522;
+  --color-ink-soft:      #5a534e;
+  --color-line:          #e3d6c4;
 
-  --color-background-page: var(--color-cream);
-  --color-background-header: var(--color-teal);
-  --color-text: var(--color-teal);
-  --color-text-header: var(--color-cream);
-  --color-accent: var(--color-coral);
-  --color-link: var(--color-orange);
-  --color-danger: var(--color-red);
-  --color-button-bg: var(--color-background-page);
-  --color-card-bg: var(--color-background-page);
-  --color-card-text: var(--color-teal);
+  /* ---- Semantic surfaces / ink ---- */
+  --surface-page:        var(--color-cream);
+  --surface-card:        var(--color-cream-warm);
+  --surface-card-alt:    #ffffff;
+  --surface-header:      var(--color-teal);
+  --surface-sunken:      var(--color-cream-deep);
 
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 40px;
+  --ink-strong:          var(--color-teal-deep);
+  --ink:                 var(--color-teal);
+  --ink-muted:           var(--color-ink-soft);
+  --ink-on-dark:         var(--color-cream);
+  --ink-on-accent:       #ffffff;
+
+  --accent:              var(--color-coral);
+  --accent-soft:         var(--color-coral-soft);
+  --accent-warm:         var(--color-orange);
+  --accent-link:         var(--color-coral);
+
+  --border:              var(--color-line);
+  --border-strong:       color-mix(in srgb, var(--ink) 25%, transparent);
+  --danger:              var(--color-red);
+
+  /* ---- Legacy aliases (existing code still references these) ---- */
+  --color-background-page:   var(--surface-page);
+  --color-background-header: var(--surface-header);
+  --color-text:              var(--ink);
+  --color-text-header:       var(--ink-on-dark);
+  --color-accent:            var(--accent);
+  --color-link:              var(--accent-link);
+  --color-danger:            var(--danger);
+  --color-button-bg:         var(--surface-card);
+  --color-card-bg:           var(--surface-card);
+  --color-card-text:         var(--ink);
+  --color-text-muted:        var(--ink-muted);
+  --color-light-teal:        var(--color-teal-soft);
+
+  /* ---- Spacing scale ---- */
+  --space-2xs: 2px;
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-2xl: 64px;
+
+  /* ---- Typography ---- */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   22px;
+  --text-xl:   28px;
+  --text-2xl:  36px;
+
+  --leading-tight: 1.2;
+  --leading-snug:  1.4;
+  --leading-body:  1.6;
+
+  /* ---- Radii ---- */
+  --radius-xs:    4px;
+  --radius-sm:    6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --shadow-sm: 0 1px 2px rgba(40, 30, 20, 0.06);
+  --shadow-md: 0 4px 14px rgba(40, 30, 20, 0.08);
+  --shadow-lg: 0 12px 28px rgba(40, 30, 20, 0.12);
+
+  /* ---- Layout ---- */
+  --content-max:  1100px;
+  --content-narrow: 640px;
+
+  /* ---- Motion ---- */
+  --ease:        cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration:      200ms;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Dark mode                                                          */
+/* ------------------------------------------------------------------ */
 body.dark-mode {
-  --color-background-page: #1a2e2e;
-  --color-background-header: #0f1f1f;
-  --color-text: #f0ede6;
-  --color-text-header: #f0ede6;
-  --color-accent: var(--color-orange);
-  --color-link: var(--color-orange);
-  --color-button-bg: var(--color-light-teal);
-  --color-card-bg: var(--color-light-teal);
-  --color-card-text: var(--color-teal);
+  --surface-page:    #1a2e2e;
+  --surface-card:    #243b3b;
+  --surface-card-alt:#2c4646;
+  --surface-header:  #0f1f1f;
+  --surface-sunken:  #15282a;
+
+  --ink-strong:      #f5ede0;
+  --ink:             #f0ede6;
+  --ink-muted:       #c9c2b4;
+  --ink-on-dark:     #f0ede6;
+
+  --accent:          var(--color-orange);
+  --accent-link:     var(--color-orange);
+
+  --border:          rgba(245, 237, 224, 0.12);
+  --border-strong:   rgba(245, 237, 224, 0.3);
+
+  /* Legacy aliases */
+  --color-background-page:   var(--surface-page);
+  --color-background-header: var(--surface-header);
+  --color-text:              var(--ink);
+  --color-text-header:       var(--ink-on-dark);
+  --color-button-bg:         var(--surface-card);
+  --color-card-bg:           var(--surface-card);
+  --color-card-text:         var(--ink);
+  --color-text-muted:        var(--ink-muted);
 }

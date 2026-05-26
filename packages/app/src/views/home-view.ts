@@ -2,54 +2,52 @@ import { css, html, shadow } from "@unbndl/html";
 
 export class HomeViewElement extends HTMLElement {
   static template = html`<template>
-    <main>
-      <section>
-        <h2>Featured Recipes</h2>
-        <recipe-list></recipe-list>
-      </section>
-    </main>
+    <header class="view-header">
+      <p class="eyebrow">Welcome back</p>
+      <h2>Featured Recipes</h2>
+      <p class="subtitle">A few favorites from the collection.</p>
+    </header>
+    <section class="section">
+      <recipe-list></recipe-list>
+    </section>
   </template>`;
+
   static styles = css`
-    .nav-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--space-sm);
-      list-style: none;
-      padding: var(--space-md) var(--space-lg);
-      margin: 0;
+    :host {
+      display: block;
+      padding: var(--space-xl) var(--space-lg);
+      max-width: var(--content-max);
+      margin: 0 auto;
     }
-    .nav-buttons li {
-      display: contents;
+
+    .view-header {
+      margin-bottom: var(--space-lg);
     }
-    .nav-btn {
-      display: inline-block;
-      padding: 10px 22px;
-      flex: 1 1 0;
-      text-align: center;
-      background: var(--color-button-bg);
-      border: 2px solid var(--color-card-text);
-      border-radius: 8px;
-      font-family: "Inter", sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--color-card-text);
-      text-decoration: none;
-      transition:
-        background 0.15s,
-        color 0.15s;
-      white-space: nowrap;
-    }
-    .nav-btn:hover {
-      background: var(--color-card-text);
-      color: var(--color-button-bg);
-    }
-    main {
-      padding: var(--space-lg);
+    .eyebrow {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--space-xs);
     }
     h2 {
-      color: var(--color-coral);
-      margin-bottom: var(--space-sm);
+      margin: 0 0 var(--space-xs);
+      font-size: var(--text-2xl);
+      font-family: var(--font-serif);
+      color: var(--ink-strong);
+      font-weight: 700;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--ink-muted);
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+    }
+
+    .section {
+      margin-bottom: var(--space-xl);
     }
   `;
 
