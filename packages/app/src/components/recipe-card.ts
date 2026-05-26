@@ -38,7 +38,7 @@ export class RecipeCardElement extends HTMLElement {
       root.querySelector("use")!.setAttribute("href", `/icons/cats.svg#${val}`);
     if (name === "image") {
       const img = root.querySelector(".thumb") as HTMLImageElement;
-      const svg = root.querySelector(".icon") as SVGElement;
+      const svg = root.querySelector(".icon") as HTMLElement;
       if (val) {
         img.src = val;
         img.hidden = false;

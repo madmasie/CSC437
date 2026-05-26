@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "run-p dev:*",
+    "dev:server": "npm run dev -w server",
+    "dev:app": "npm run dev -w app",
+    "build": "npm run build -w app && npm run build -w server",
+    "start": "npm run build && cross-env STATIC=./packages/app/dist npm run start -w server",
+    "check": "npm run check -w server"
   },
   "repository": {
     "type": "git",
@@ -19,15 +24,10 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {
-    "@unbndl/auth": "^1.0.4",
-    "@unbndl/html": "^1.0.5",
-    "@unbndl/switch": "^1.0.3",
-    "@unbndl/view": "^1.0.5",
-    "http-server": "^14.1.1"
-  },
   "devDependencies": {
-    "tsc": "^2.0.4",
-    "vite": "^8.0.13"
+    "cross-env": "^10.1.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.14"
   }
 }
