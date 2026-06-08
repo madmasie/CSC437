@@ -28,15 +28,20 @@ interface RecipeListViewModel {
   token?: string;
   recipes?: Recipe[];
   search?: string;
+  filters?: string[];
 }
 
 export class RecipeListElement extends HTMLElement {
-  viewModel = createViewModel<RecipeListViewModel>({})
+  viewModel = createViewModel<RecipeListViewModel>({ filters: [] })
     .with(fromAuth(this), "token")
     .with(fromStore<Model>(this), "recipes");
 
   set search(value: string) {
     this.viewModel.set("search", value.toLowerCase());
+  }
+
+  set filters(value: string[]) {
+    this.viewModel.set("filters", value);
   }
 
   view = html`
@@ -47,15 +52,12 @@ export class RecipeListElement extends HTMLElement {
       <div class="carousel">
         ${($: any) => {
           const q = ($.search || "").toLowerCase();
+          const activeFilters: string[] = $.filters || [];
           const list: Recipe[] = $.recipes || [];
-          const filtered = q
-            ? list.filter(
-                (r) =>
-                  r.title.toLowerCase().includes(q) ||
-                  r.description.toLowerCase().includes(q)
-              )
-            : list;
-          return filtered.map(renderCard);
+          return list
+            .filter((r) => !q || r.title.toLowerCase().includes(q) || r.description.toLowerCase().includes(q))
+            .filter((r) => activeFilters.length === 0 || activeFilters.every((f) => (r.tags || []).includes(f)))
+            .map(renderCard);
         }}
       </div>
       <button class="arrow arrow-right" aria-label="Scroll right">

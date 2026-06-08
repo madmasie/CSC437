@@ -12,6 +12,7 @@ const recipeSchema = new Schema<Recipe>(
     time: String,
     ingredients: [String],
     instructions: [String],
+    tags: [String],
   },
   { collection: "recipes" },
 );

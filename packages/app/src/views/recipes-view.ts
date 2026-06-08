@@ -27,14 +27,31 @@ export class RecipesViewElement extends HTMLElement {
 
     <section class="section">
       <h3>Filter Options</h3>
-      <p class="muted">Coming soon — clickable filters that adapt to your search:</p>
-      <ul class="filters">
-        <li><strong>Cooking type:</strong> Breakfast · Lunch · Dinner · Dessert</li>
-        <li><strong>Flavor profile:</strong> Savory · Creamy · Sweet · Spicy</li>
-        <li><strong>Difficulty:</strong> Easy · Medium · Hard</li>
-        <li><strong>Budget:</strong> Budget-friendly · Splurge</li>
-        <li><strong>Dietary:</strong> Dairy-free · Gluten-free · Vegetarian</li>
-      </ul>
+      <div class="filter-groups">
+        <div class="filter-group">
+          <span class="filter-label">Cooking type</span>
+          <div class="filter-chips">
+            <button class="chip" data-filter="Dinner">Dinner</button>
+            <button class="chip" data-filter="Dessert">Dessert</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Flavor</span>
+          <div class="filter-chips">
+            <button class="chip" data-filter="Savory">Savory</button>
+            <button class="chip" data-filter="Creamy">Creamy</button>
+            <button class="chip" data-filter="Sweet">Sweet</button>
+            <button class="chip" data-filter="Spicy">Spicy</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Difficulty</span>
+          <div class="filter-chips">
+            <button class="chip" data-filter="Easy">Easy</button>
+            <button class="chip" data-filter="Medium">Medium</button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section">
@@ -172,25 +189,51 @@ export class RecipesViewElement extends HTMLElement {
       background: color-mix(in srgb, var(--accent) 85%, black);
     }
 
-    /* ---------- Filters list ---------- */
-    .filters {
-      list-style: none;
-      padding: var(--space-md) var(--space-lg);
-      margin: 0;
-      background: var(--surface-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+    /* ---------- Filter chips ---------- */
+    .filter-groups {
       display: flex;
       flex-direction: column;
       gap: var(--space-sm);
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--ink-muted);
+      min-width: 80px;
+    }
+    .filter-chips {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      background: var(--surface-card);
+      color: var(--ink);
       font-family: var(--font-sans);
       font-size: var(--text-sm);
-      color: var(--ink);
+      cursor: pointer;
+      transition: background var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease);
     }
-    .filters strong {
-      color: var(--ink-strong);
-      font-weight: 600;
-      margin-right: var(--space-xs);
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .chip.active {
+      background: var(--accent);
+      color: var(--ink-on-accent);
+      border-color: var(--accent);
     }
 
     .visually-hidden {
@@ -206,21 +249,20 @@ export class RecipesViewElement extends HTMLElement {
     }
   `;
 
+  private activeFilters = new Set<string>();
+
   constructor() {
     super();
     shadow(this)
       .template(RecipesViewElement.template)
       .styles(RecipesViewElement.styles);
 
-    this.shadowRoot!.querySelector(".search")!.addEventListener(
-      "submit",
-      (e) => {
-        e.preventDefault();
-        const input = this.shadowRoot!.querySelector<HTMLInputElement>("#search")!;
-        const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
-        list.search = input.value.trim();
-      }
-    );
+    this.shadowRoot!.querySelector(".search")!.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const input = this.shadowRoot!.querySelector<HTMLInputElement>("#search")!;
+      const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
+      list.search = input.value.trim();
+    });
 
     this.shadowRoot!.querySelector("#search")!.addEventListener("input", (e) => {
       const input = e.target as HTMLInputElement;
@@ -228,6 +270,21 @@ export class RecipesViewElement extends HTMLElement {
         const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
         list.search = "";
       }
+    });
+
+    this.shadowRoot!.addEventListener("click", (e) => {
+      const chip = (e.target as Element).closest<HTMLElement>(".chip");
+      if (!chip) return;
+      const filter = chip.dataset.filter!;
+      if (this.activeFilters.has(filter)) {
+        this.activeFilters.delete(filter);
+        chip.classList.remove("active");
+      } else {
+        this.activeFilters.add(filter);
+        chip.classList.add("active");
+      }
+      const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
+      list.filters = [...this.activeFilters];
     });
   }
 }
