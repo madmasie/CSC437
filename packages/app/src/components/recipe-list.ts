@@ -36,7 +36,7 @@ export class RecipeListElement extends HTMLElement {
     .with(fromStore<Model>(this), "recipes");
 
   set search(value: string) {
-    this.viewModel.set({ search: value.toLowerCase() });
+    this.viewModel.set("search", value.toLowerCase());
   }
 
   view = html`
