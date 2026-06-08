@@ -211,5 +211,23 @@ export class RecipesViewElement extends HTMLElement {
     shadow(this)
       .template(RecipesViewElement.template)
       .styles(RecipesViewElement.styles);
+
+    this.shadowRoot!.querySelector(".search")!.addEventListener(
+      "submit",
+      (e) => {
+        e.preventDefault();
+        const input = this.shadowRoot!.querySelector<HTMLInputElement>("#search")!;
+        const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
+        list.search = input.value.trim();
+      }
+    );
+
+    this.shadowRoot!.querySelector("#search")!.addEventListener("input", (e) => {
+      const input = e.target as HTMLInputElement;
+      if (!input.value.trim()) {
+        const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
+        list.search = "";
+      }
+    });
   }
 }

@@ -27,6 +27,7 @@ function renderCard({
 interface RecipeListViewModel {
   token?: string;
   recipes?: Recipe[];
+  search?: string;
 }
 
 export class RecipeListElement extends HTMLElement {
@@ -34,13 +35,30 @@ export class RecipeListElement extends HTMLElement {
     .with(fromAuth(this), "token")
     .with(fromStore<Model>(this), "recipes");
 
+  set search(value: string) {
+    this.viewModel.set({ search: value.toLowerCase() });
+  }
+
   view = html`
     <div class="carousel-wrapper">
       <button class="arrow arrow-left" aria-label="Scroll left">
         &#8249;
       </button>
       <div class="carousel">
-        ${($: any) => ($.recipes || []).map(renderCard)}
+        ${($: any) => {
+          const q = $.search || "";
+          const list: Recipe[] = $.recipes || [];
+          const filtered = q
+            ? list.filter(
+                (r) =>
+                  r.title.toLowerCase().includes(q) ||
+                  r.description.toLowerCase().includes(q)
+              )
+            : list;
+          return filtered.length
+            ? filtered.map(renderCard)
+            : [html`<p class="no-results">No recipes found for "${$.search}".</p>`];
+        }}
       </div>
       <button class="arrow arrow-right" aria-label="Scroll right">
         &#8250;
@@ -130,6 +148,13 @@ export class RecipeListElement extends HTMLElement {
     }
     .arrow:active {
       transform: scale(0.97);
+    }
+
+    .no-results {
+      padding: var(--space-lg);
+      color: var(--ink-muted);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
     }
   `;
 }
