@@ -16,6 +16,10 @@ app.use(express.json());
 app.use("/auth", auth);
 app.use(express.static(staticDir));
 
+app.get("/", (_: Request, res: Response) => {
+  res.redirect("/app");
+});
+
 app.get("/hello", (_: Request, res: Response) => {
   res.send("Hello, World");
 });
