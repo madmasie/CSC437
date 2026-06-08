@@ -4,6 +4,7 @@ import { fromAuth } from "@unbndl/auth";
 import { fromStore, Store } from "@unbndl/store";
 import { Recipe } from "server/models";
 import { Model } from "../model.ts";
+import { pushHistory } from "../history.ts";
 
 interface RecipeViewAttributes {
   "recipe-id"?: string;
@@ -258,6 +259,9 @@ export class RecipeViewElement extends HTMLElement {
     this.viewModel.createEffect(($: any) => {
       if ($.recipeid && $.token) {
         Store.dispatch(this, ["recipe/request", { id: $.recipeid }]);
+      }
+      if ($.recipe) {
+        pushHistory({ id: $.recipe.id, title: $.recipe.title, href: $.recipe.href });
       }
     });
   }
