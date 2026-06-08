@@ -266,10 +266,8 @@ export class RecipesViewElement extends HTMLElement {
 
     this.shadowRoot!.querySelector("#search")!.addEventListener("input", (e) => {
       const input = e.target as HTMLInputElement;
-      if (!input.value.trim()) {
-        const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
-        list.search = "";
-      }
+      const list = this.shadowRoot!.querySelector<any>("recipe-list")!;
+      list.search = input.value.trim();
     });
 
     this.shadowRoot!.addEventListener("click", (e) => {

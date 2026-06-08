@@ -55,7 +55,7 @@ export class RecipeListElement extends HTMLElement {
           const activeFilters: string[] = $.filters || [];
           const list: Recipe[] = $.recipes || [];
           return list
-            .filter((r) => !q || r.title.toLowerCase().includes(q) || r.description.toLowerCase().includes(q))
+            .filter((r) => !q || r.title.toLowerCase().includes(q) || r.description.toLowerCase().includes(q) || (r.ingredients || []).some((i) => i.toLowerCase().includes(q)))
             .filter((r) => activeFilters.length === 0 || activeFilters.every((f) => (r.tags || []).includes(f)))
             .map(renderCard);
         }}
