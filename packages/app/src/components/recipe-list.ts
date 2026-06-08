@@ -8,14 +8,14 @@ import { Model } from "../model.ts";
 function renderCard({
   href,
   icon,
-  image,
   title,
   description,
   difficulty,
   time,
 }: any) {
+  const isImage = icon && icon.startsWith("/images/");
   return html`
-    <recipe-card href=${href} icon=${icon} image=${image || ""}>
+    <recipe-card href=${href} icon=${isImage ? "" : icon} image=${isImage ? icon : ""}>
       <span slot="title">${title}</span>
       <span slot="description">${description}</span>
       <span slot="difficulty">${difficulty}</span>

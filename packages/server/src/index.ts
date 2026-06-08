@@ -31,6 +31,14 @@ app.use("/app", (req: Request, res: Response) => {
   fs.readFile(indexHtml, { encoding: "utf8" }).then((html) => res.send(html));
 });
 
+app.get("/login.html", (req: Request, res: Response) => {
+  res.sendFile(path.resolve(staticDir, "login.html"));
+});
+
+app.get("/sign-up.html", (req: Request, res: Response) => {
+  res.sendFile(path.resolve(staticDir, "sign-up.html"));
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
