@@ -46,7 +46,7 @@ export class RecipeListElement extends HTMLElement {
       </button>
       <div class="carousel">
         ${($: any) => {
-          const q = $.search || "";
+          const q = ($.search || "").toLowerCase();
           const list: Recipe[] = $.recipes || [];
           const filtered = q
             ? list.filter(
@@ -55,9 +55,7 @@ export class RecipeListElement extends HTMLElement {
                   r.description.toLowerCase().includes(q)
               )
             : list;
-          return filtered.length
-            ? filtered.map(renderCard)
-            : [html`<p class="no-results">No recipes found for "${$.search}".</p>`];
+          return filtered.map(renderCard);
         }}
       </div>
       <button class="arrow arrow-right" aria-label="Scroll right">
@@ -148,13 +146,6 @@ export class RecipeListElement extends HTMLElement {
     }
     .arrow:active {
       transform: scale(0.97);
-    }
-
-    .no-results {
-      padding: var(--space-lg);
-      color: var(--ink-muted);
-      font-family: var(--font-sans);
-      font-size: var(--text-sm);
     }
   `;
 }
