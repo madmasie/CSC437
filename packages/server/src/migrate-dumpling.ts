@@ -13,8 +13,10 @@ setTimeout(async () => {
   const recipes = await RecipeSvc.index();
   const dumpling = recipes.find((r) => r.title.toLowerCase().includes("dumpling"));
   if (!dumpling) { console.log("Not found. Titles:", recipes.map(r => r.title)); process.exit(1); }
+
+  const plain = JSON.parse(JSON.stringify(dumpling));
   await RecipeSvc.update(dumpling.id, {
-    ...dumpling,
+    ...plain,
     icon: "/images/dumpling-bake.jpeg",
     ingredients: [
       "1/4 cup Trader Joe's Soyaki",
