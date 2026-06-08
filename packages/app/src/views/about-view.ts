@@ -11,8 +11,12 @@ export class AboutViewElement extends HTMLElement {
       <img src="/images/maddie.jpg" alt="Photo of Maddie" class="about-photo" />
 
       <p class="about-bio">
-        Fun facts about me coming soon — check back to learn more about the
-        person behind these recipes.
+        Hi, I'm Maddie! I'm graduating from Cal Poly SLO with a major in
+        Electrical Engineering and a minor in Computer Science. Throughout
+        college, I've slowly learned to cook, and these are some of the recipes
+        I've made a lot throughout my 5 years at Cal Poly. This website is a
+        work in progress, as there are a lot of features I have not fully
+        implemented yet.
       </p>
 
       <ul class="social-buttons">
